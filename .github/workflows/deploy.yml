@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: Show workspace
-      run: pwd && ls -R
+        run: pwd && ls -R
 
       - name: Build resume
         run: node scripts/build-resume.js
