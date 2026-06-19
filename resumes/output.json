@@ -1,0 +1,244 @@
+{
+  "basics": {
+    "name": "夏铭",
+    "label": "资深软件开发经理 / 存储自动化软件产品经理",
+    "email": "forrestxm@126.com",
+    "phone": "+86 13761047529",
+    "summary": "资深软件开发经理，拥有超过 25 年横跨软件全球化、中间件平台 IBM WebSphere、企业社交软件 IBM Connections、企业级存储可观测性软件 Virtual Storage Analytics 和存储自动化软件 Terraform / Ansible 的开发与管理经验。在长期软件工程实践中形成以身作则、化繁为简、善于协作共赢的工作风格，具备高度责任感、主动性、抗压能力，以及带领团队攻坚交付的能力。"
+  },
+  "work": [
+    {
+      "name": "Dell EMC",
+      "position": "软件开发经理，存储自动化软件产品经理",
+      "startDate": "2019-08",
+      "endDate": "2025-11",
+      "summary": "从事企业存储管理与自动化软件开发管理，团队人数 14 人。",
+      "highlights": [
+        "负责 Dell EMC 企业存储系统自动化管理软件开发，覆盖 Terraform 和 Ansible。",
+        "对接存储平台架构师、产品经理和开发经理，明确并协调自动化管理需求。",
+        "对接外部客户自动化管理需求，整体协调产品特性开发优先级。",
+        "负责 Dell EMC 软件定义存储产品云端自动化部署开发，涉及 AWS、Azure 公有云环境产品部署拓扑图定义和实施。",
+        "推动并开发 CI/CD 最佳实践在团队中的实施，熟悉 Jenkins Pipeline 技术栈。"
+      ]
+    },
+    {
+      "name": "IBM",
+      "position": "软件测试工程师，软件开发工程师，软件发布经理，软件开发经理",
+      "startDate": "2000-07",
+      "endDate": "2019-07",
+      "summary": "从事企业级社交解决方案、中间件软件等产品研发与管理，团队人数 30 人。",
+      "highlights": [
+        "拥有产品功能端到端开发经验，覆盖需求分析、产品设计、架构、开发、测试、交付和后期维护。",
+        "带领并指导上海开发团队参与 IBM 全球分布式开发协作。",
+        "采用教练式管理手段培养团队成员，帮助成员取得职业发展。",
+        "作为核心人员与美国和爱尔兰团队保持密切沟通。",
+        "完成产品符合性开发要求，并向本地和全球发起人负责。",
+        "支持本地客户产品使用，包括中国工商银行、人民教育出版社。",
+        "参与产品 SaaS 交付的运营 OnDuty 工作，协调问题及时高效解决。",
+        "负责博客、论坛、工作日历、社交化书签、社交化联系人管理、产品安装程序、人员微服务模块等产品组件的开发维护。",
+        "交付 IBM Connections 6.0 及 CRs 等产品版本。"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "华东师范大学",
+      "area": "计算机科学及应用"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Leadership & Management",
+      "keywords": [
+        "软件开发团队管理",
+        "项目管理",
+        "跨部门协作",
+        "教练式管理",
+        "Agile Scrum",
+        "产品优先级协调"
+      ]
+    },
+    {
+      "name": "Storage Automation",
+      "keywords": [
+        "Terraform",
+        "Ansible",
+        "企业存储管理",
+        "软件定义存储",
+        "AWS",
+        "Azure"
+      ]
+    },
+    {
+      "name": "Backend & Middleware",
+      "keywords": [
+        "Java",
+        "Java EE",
+        "WebSphere Application Server",
+        "JSF",
+        "Struts",
+        "Spring",
+        "Velocity",
+        "Tiles",
+        "JMS",
+        "WebSphere message bus",
+        "ibatis"
+      ]
+    },
+    {
+      "name": "Frontend & Microservices",
+      "keywords": [
+        "Dojo",
+        "CSS",
+        "HTML",
+        "Jazz Ajax Framework",
+        "Node.js",
+        "npm",
+        "LoopBack",
+        "MongoDB",
+        "Elasticsearch",
+        "ReactJS"
+      ]
+    },
+    {
+      "name": "Cloud, DevOps & Automation",
+      "keywords": [
+        "vSphere",
+        "KVM",
+        "libvirt",
+        "Kubernetes",
+        "Docker",
+        "IBM Cloud Private",
+        "Selenium",
+        "Selenium Grid",
+        "Jenkins",
+        "Jenkins Pipeline",
+        "Python",
+        "Linux shell scripting"
+      ]
+    },
+    {
+      "name": "Globalization & Localization",
+      "keywords": [
+        "软件全球化",
+        "软件本地化",
+        "IBM Security Essentials"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Dell EMC 企业存储系统自动化管理",
+      "description": "负责 Terraform 和 Ansible 方向的企业存储自动化管理软件开发与需求协调。"
+    },
+    {
+      "name": "Dell EMC 软件定义存储云端自动化部署",
+      "description": "负责 AWS、Azure 公有云环境部署拓扑图定义和实施。"
+    },
+    {
+      "name": "IBM Connections 6.0 and CRs",
+      "description": "参与并交付企业级社交解决方案产品版本，负责多个核心组件开发维护。"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Chinese",
+      "fluency": "Native"
+    },
+    {
+      "language": "English",
+      "fluency": "Professional working proficiency"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Project Management Professional",
+      "issuer": "PMI"
+    },
+    {
+      "name": "Registered Scrum Master and Product Owner",
+      "issuer": "Scrum Inc."
+    },
+    {
+      "name": "Apache Geronimo PMC member"
+    },
+    {
+      "name": "Agile Scrum Master"
+    },
+    {
+      "name": "IBM Enterprise Design Thinking"
+    },
+    {
+      "name": "Enterprise Design Thinking Practitioner"
+    },
+    {
+      "name": "IBM Security Essentials for Architects"
+    },
+    {
+      "name": "IBM Cloud Private - Foundation Technology"
+    },
+    {
+      "name": "IBM Cloud Essentials"
+    },
+    {
+      "name": "Get Started with Containers"
+    },
+    {
+      "name": "IBM Cloud Cognitive Practitioner"
+    },
+    {
+      "name": "Docker Essentials: A Developer Introduction"
+    },
+    {
+      "name": "Python for Data Science"
+    },
+    {
+      "name": "Machine Learning with Python Level 1"
+    },
+    {
+      "name": "Data Science for Business Level 2"
+    },
+    {
+      "name": "IBM Blockchain Essentials"
+    },
+    {
+      "name": "AI Fundamentals"
+    },
+    {
+      "name": "Advanced Leadership Experience"
+    },
+    {
+      "name": "Leadership Imperative"
+    },
+    {
+      "name": "Secure development practices"
+    },
+    {
+      "name": "Inspirational Leadership Workshop"
+    },
+    {
+      "name": "Architecture Thinking"
+    },
+    {
+      "name": "Advanced Negotiation"
+    },
+    {
+      "name": "Business Acumen"
+    },
+    {
+      "name": "Complicated Problem Solving"
+    },
+    {
+      "name": "Software Development Life Cycle methodology and best practices"
+    },
+    {
+      "name": "Senior Software/Solution Technical Support"
+    },
+    {
+      "name": "Software Development Team Coach"
+    },
+    {
+      "name": "Enterprise Social Solutions Domain Knowledge"
+    }
+  ]
+}
