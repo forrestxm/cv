@@ -22,6 +22,11 @@ jobs:
       - name: Show workspace
         run: pwd && ls -R
 
+      - name: Check env
+        run: echo "key length = ${#OPENAI_API_KEY}"
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
       - name: Build resume
         run: node scripts/build-resume.js
         env:
