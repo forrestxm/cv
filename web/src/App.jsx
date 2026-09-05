@@ -296,7 +296,7 @@ export default function App() {
               <div className="edu-card">
                 <h3>{education[0]?.institution}</h3>
                 <p className="edu-school">{education[0]?.area}</p>
-                <p>{education[0]?.degree}</p>
+                <p>{education[0]?.degree || education[0]?.studyType}</p>
               </div>
             </Reveal>
             <Reveal delay={100}>
@@ -321,6 +321,27 @@ export default function App() {
             <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>Contact</h2>
           </div>
           <div className="contact-grid">
+            {basics.url && (
+              <Reveal>
+                <a className="contact-item" href={basics.url} target="_blank" rel="noreferrer">
+                  <span className="contact-icon">🌐</span>
+                  <div>
+                    <span className="contact-label">在线简历</span>
+                    <span className="contact-value">{basics.url.replace(/^https?:\/\//, "")}</span>
+                  </div>
+                  <button
+                    className="copy-btn"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      copy(basics.url, e);
+                    }}
+                    title="复制"
+                  >
+                    复制
+                  </button>
+                </a>
+              </Reveal>
+            )}
             {basics.email && (
               <Reveal>
                 <a className="contact-item" href={`mailto:${basics.email}`}>

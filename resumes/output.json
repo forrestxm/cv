@@ -3,7 +3,8 @@
     "name": "夏铭",
     "label": "资深软件开发经理",
     "email": "forrestxm@126.com",
-    "summary": "资深软件开发经理，拥有超过25年横跨软件全球化与本地化、中间件平台（IBM WebSphere）、企业社交软件（IBM Connections）、企业级存储可观测性软件（Virtual Storage Analytics）和存储自动化软件（Terraform and Ansible）的丰富开发经验。在长期的软件工程实践中形成了以身作则、化繁为简、善于协作共赢的工作风格。具有高度的工作责任感和主动性，良好的工作承压能力，擅长带领团队攻坚完成任务。"
+    "url": "https://forrestxm.github.io/cv",
+    "summary": "资深软件开发经理，拥有超过25年跨软件全球化、中间件平台、企业社交软件、企业级存储可观测性软件及存储自动化软件的开发经验。在长期实践中形成以身作则、化繁为简、善于协作共赢的工作风格，具备高度责任感与主动性，承压能力强，擅长带领团队攻坚。"
   },
   "work": [
     {
@@ -11,22 +12,40 @@
       "position": "研发负责人，软件开发经理",
       "startDate": "2026-05",
       "endDate": "至今",
-      "summary": "从事eCOA/ePData临床研究软件研发管理与质量体系建设。",
+      "summary": "负责eCOA/ePData临床研究软件的研发管理与质量体系建设。",
       "highlights": [
-        "负责公司eCOA/ePData平台研发管理，带领测试团队并推进研发质量体系建设。",
-        "主导计算机化系统验证（CSV）体系建设：编写CSV SOP并推动获批落地，搭建流程节点交付物模板库，驱动v3/v3.1验证计划、URS、风险评估等交付物的编写、评审与签署。",
-        "代表研发部门应对客户稽查/审计（PPD、凯诺、翰森、ICON），负责CAPA制定、根因分析（鱼骨图分析法）与回复闭环。",
-        "推进AI赋能研发：调研并落地GitLab issue缺陷管理开源方案与agent skills（issue-fix、zentao-bug-fix），制定缺陷管理流程，推动测试团队AI工具普及。",
-        "负责开源合规与安全：生成开源许可证报告与SBOM，使用opensca/semgrep完成依赖漏洞扫描与修复，开展渗透测试。",
-        "负责DevOps基础设施：扩容Kubernetes集群、优化GitLab CI流水线（并行stages与runner并发）、完成禅道系统跨版本升级并与GitLab打通缺陷可追溯性。",
+        "主导计算机化系统验证（CSV）体系建设，编写SOP并推动获批，搭建流程交付物模板库，驱动v3/v3.1验证计划、URS、风险评估等交付物的编写、评审与签署。",
+        "代表研发部门应对客户稽查（PPD、凯诺、翰森、ICON），负责CAPA制定、根因分析与回复闭环。",
+        "推进AI赋能研发，落地GitLab issue缺陷管理开源方案与agent skills，制定缺陷管理流程，推动测试团队AI工具普及。",
+        "负责开源合规与安全，生成开源许可证报告与SBOM，使用opensca/semgrep完成依赖漏洞扫描与修复，开展渗透测试。",
+        "负责DevOps基础设施，扩容Kubernetes集群、优化GitLab CI流水线、完成禅道系统跨版本升级并与GitLab打通缺陷可追溯性。",
         "参与公司SOP框架调整，负责基本风险控制policy与AI Policy的更新。"
       ],
       "achievements": [
         "建立CSV SOP体系并获QA和CEO批复，v3.1验证交付物按期完成审批签署。",
-        "完成禅道22.2升级与GitLab集成（bug#xxx自动关联），提升缺陷管理与代码变更可追溯性。",
-        "修复v3产品critical/high级依赖漏洞，输出SBOM、OSS、SAST等审计所需报告，支撑客户稽查顺利通过。",
+        "完成禅道22.2升级与GitLab集成，提升缺陷管理与代码变更可追溯性。",
+        "修复v3产品critical/high级依赖漏洞，输出SBOM、OSS、SAST等报告，支撑客户稽查顺利通过。",
         "落地AI agent skills，实现缺陷从Issue到修复代码、MR的自动化流转。",
         "完成PPD、凯诺、翰森、ICON等多轮稽查的应对与CAPA闭环。"
+      ],
+      "technologies": [
+        "Kubernetes",
+        "Docker",
+        "GitLab CI",
+        "阿里云ECS",
+        "禅道(Zentao)",
+        "semgrep",
+        "opensca",
+        "SBOM",
+        "渗透测试",
+        "GAMP 5",
+        "CSV",
+        "Codex/Claude agent skills",
+        "GitLab issue工作流",
+        "Scrum",
+        "测试管理",
+        "缺陷管理",
+        "跨部门协作"
       ]
     },
     {
@@ -34,13 +53,12 @@
       "position": "软件开发经理，存储自动化软件产品经理",
       "startDate": "2019-08",
       "endDate": "2025-11",
-      "summary": "从事存储管理软件开发管理，团队人数14人。",
+      "summary": "负责企业存储系统自动化管理（Terraform, Ansible）软件开发，管理14人团队。",
       "highlights": [
-        "负责Dell EMC企业存储系统自动化管理（Terraform, Ansible）软件开发。",
         "对接存储平台架构师、产品经理、开发经理，明确自动化管理需求。",
         "对接外部客户自动化管理需求，整体协调产品特性开发优先级。",
         "负责Dell EMC软件定义存储产品云端自动化部署开发，涉及AWS、Azure公有云环境产品部署拓扑图定义和实施。",
-        "推动和开发CI/CD最佳实践在所属团队的实施，熟悉Jenkins Pipeline技术栈。"
+        "推动和开发CI/CD最佳实践，熟悉Jenkins Pipeline技术栈。"
       ]
     },
     {
@@ -48,19 +66,53 @@
       "position": "软件测试工程师，软件开发工程师，软件发布经理，软件开发经理",
       "startDate": "2000-07",
       "endDate": "2019-07",
-      "summary": "从事企业级社交解决方案、中间件软件等开发管理工作，团队人数30人。",
+      "summary": "负责企业级社交解决方案、中间件软件等，管理30人团队。",
       "highlights": [
-        "拥有产品功能端到端的开发经验，从需求分析、产品设计、架构、开发、测试，直到交付和后期维护。",
+        "拥有产品功能端到端开发经验，从需求分析到后期维护。",
         "带领和指导上海开发团队参与IBM全球分布式开发协作。",
         "采用教练式管理手段培养团队成员，帮助他们取得职业生涯发展。",
         "作为核心人员保持与美国和爱尔兰团队的密切沟通。",
-        "取得产品的各项符合性开发要求，向本地和全球发起人负责。",
-        "支持本地客户的产品使用，包括中国工商银行、人民教育出版社。",
-        "参与产品SaaS交付的运营OnDuty工作，负责协调问题的及时高效解决。"
+        "取得产品各项符合性开发要求，向本地和全球发起人负责。",
+        "支持本地客户产品使用，包括中国工商银行、人民教育出版社。",
+        "参与产品SaaS交付的运营OnDuty工作，负责协调问题解决。"
       ],
       "achievements": [
-        "负责产品组件开发维护：博客、论坛、工作日历、社交化书签、社交化联系人管理、产品安装程序、人员微服务模块。",
-        "交付IBM Connections 6.0及CRs产品版本。"
+        "负责开发维护博客、论坛、工作日历、社交化书签、社交化联系人管理、产品安装程序、人员微服务模块。",
+        "交付IBM Connections 6.0及CRs。"
+      ],
+      "technologies": [
+        "Java/Java EE",
+        "WebSphere Application Server",
+        "JSF",
+        "Struts",
+        "Spring",
+        "Velocity",
+        "Tiles",
+        "JMS",
+        "WebSphere Message Bus",
+        "ibatis",
+        "Dojo",
+        "CSS",
+        "HTML",
+        "JAF",
+        "Nodejs",
+        "npm",
+        "Loopback",
+        "Mongo",
+        "ElasticSearch",
+        "ReactJS",
+        "vSphere",
+        "KVM/libvirt",
+        "Kubernetes",
+        "Docker",
+        "IBM Cloud Private",
+        "Selenium",
+        "Selenium Grid",
+        "Jenkins",
+        "Python",
+        "IBM Security Essentials",
+        "Linux shell scripting",
+        "全球化/本地化工具"
       ]
     }
   ],
@@ -68,7 +120,9 @@
     {
       "institution": "华东师范大学",
       "area": "计算机科学及应用",
-      "degree": "学士"
+      "studyType": "本科",
+      "startDate": "",
+      "endDate": ""
     }
   ],
   "skills": [
@@ -86,68 +140,95 @@
       ]
     },
     {
-      "name": "Programming Languages",
+      "name": "编程语言",
       "level": "",
       "keywords": [
-        "Java/Java EE",
+        "Java",
         "Node.js",
         "Python",
-        "Shell scripting"
+        "Shell"
       ]
     },
     {
-      "name": "Frameworks & Libraries",
+      "name": "框架与中间件",
       "level": "",
       "keywords": [
         "Spring",
-        "JSF",
         "Struts",
+        "JSF",
         "Velocity",
         "Tiles",
-        "Dojo",
-        "ReactJS"
+        "WebSphere",
+        "JMS",
+        "ibatis",
+        "Loopback",
+        "ReactJS",
+        "Dojo"
       ]
     },
     {
-      "name": "DevOps & Cloud",
+      "name": "DevOps与云",
       "level": "",
       "keywords": [
         "Kubernetes",
         "Docker",
         "GitLab CI",
         "Jenkins",
-        "AWS",
-        "Azure",
-        "阿里云 ECS",
-        "IBM Cloud Private"
-      ]
-    },
-    {
-      "name": "Storage Automation",
-      "level": "",
-      "keywords": [
         "Terraform",
         "Ansible",
-        "Virtual Storage Analytics"
+        "AWS",
+        "Azure",
+        "阿里云ECS",
+        "vSphere",
+        "KVM"
       ]
     },
     {
-      "name": "Security & Compliance",
+      "name": "数据库与搜索",
+      "level": "",
+      "keywords": [
+        "Mongo",
+        "ElasticSearch"
+      ]
+    },
+    {
+      "name": "测试与自动化",
+      "level": "",
+      "keywords": [
+        "Selenium",
+        "Selenium Grid"
+      ]
+    },
+    {
+      "name": "安全与合规",
       "level": "",
       "keywords": [
         "Semgrep",
-        "OpenSCA",
+        "Opensca",
         "SBOM",
-        "GAMP 5"
+        "渗透测试",
+        "GAMP 5",
+        "CSV"
       ]
     },
     {
-      "name": "Methodologies",
+      "name": "AI与数据科学",
       "level": "",
       "keywords": [
-        "Agile",
-        "Scrum",
-        "Waterfall"
+        "Machine Learning",
+        "Python for Data Science",
+        "Data Science",
+        "IBM Cloud Cognitive",
+        "Blockchain Essentials"
+      ]
+    },
+    {
+      "name": "其他",
+      "level": "",
+      "keywords": [
+        "全球化/本地化方法及工具",
+        "Linux Shell Scripting",
+        "IBM Security Essentials"
       ]
     }
   ],
@@ -164,132 +245,159 @@
   ],
   "certificates": [
     {
-      "name": "Project Management Professional (PMP)",
-      "issuer": "PMI"
-    },
-    {
-      "name": "Registered Scrum Master",
-      "issuer": "Scrum Inc."
-    },
-    {
-      "name": "Registered Product Owner",
-      "issuer": "Scrum Inc."
-    },
-    {
-      "name": "Agile Scrum Master",
-      "issuer": ""
-    },
-    {
-      "name": "IBM Enterprise Design Thinking",
-      "issuer": "IBM"
-    },
-    {
-      "name": "Enterprise Design Thinking Practitioner",
-      "issuer": "IBM"
-    },
-    {
-      "name": "IBM Security Essentials for Architects",
-      "issuer": "IBM"
-    },
-    {
-      "name": "IBM Cloud Private – Foundation Technology",
-      "issuer": "IBM"
-    },
-    {
-      "name": "IBM Cloud Essentials",
-      "issuer": "IBM"
-    },
-    {
-      "name": "Get Started with Containers",
-      "issuer": "IBM"
-    },
-    {
-      "name": "IBM Cloud Cognitive Practitioner",
-      "issuer": "IBM"
-    },
-    {
-      "name": "Docker Essentials: A Developer Introduction",
-      "issuer": "IBM"
-    },
-    {
-      "name": "Python for Data Science",
-      "issuer": "IBM"
-    },
-    {
-      "name": "Machine Learning with Python Level 1",
-      "issuer": "IBM"
-    },
-    {
-      "name": "Data Science for Business Level 2",
-      "issuer": "IBM"
-    },
-    {
-      "name": "IBM Blockchain Essentials",
-      "issuer": "IBM"
-    },
-    {
       "name": "AI Fundamentals",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "Advanced Leadership Experience",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "Leadership Imperative",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "Secure development practices",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "Inspirational Leadership Workshop",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
+    },
+    {
+      "name": "Registered Scrum Master and Product Owner",
+      "issuer": "Scrum Inc.",
+      "date": ""
     },
     {
       "name": "Apache Geronimo PMC member",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
+    },
+    {
+      "name": "Agile Scrum Master",
+      "issuer": "",
+      "date": ""
+    },
+    {
+      "name": "Project Management Professional",
+      "issuer": "PMI",
+      "date": ""
+    },
+    {
+      "name": "IBM Enterprise Design Thinking",
+      "issuer": "IBM",
+      "date": ""
     },
     {
       "name": "Architecture Thinking",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "Leadership in a Project Team Environment",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "MBTI workshop",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "Advanced Negotiation",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "Business Acumen",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "Complicated Problem Solving",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "Software Development Life Cycle methodology and best practices",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "Senior Software/Solution Technical Support",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "Software Development Team Coach",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
     },
     {
       "name": "Enterprise Social Solutions Domain Knowledge",
-      "issuer": ""
+      "issuer": "",
+      "date": ""
+    },
+    {
+      "name": "Enterprise Design Thinking Practitioner",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "IBM Security Essentials for Architects",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "IBM Cloud Private – Foundation Technology",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "IBM Cloud Essentials",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "Get Started with Containers",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "IBM Cloud Cognitive Practitioner",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "Docker Essentials: A Developer Introduction",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "Python for Data Science",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "Machine Learning with Python Level 1",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "Data Science for Business Level 2",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "IBM Blockchain Essentials",
+      "issuer": "IBM",
+      "date": ""
     },
     {
       "name": "AI in GxP",
