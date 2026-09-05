@@ -5,19 +5,35 @@ Host my latest resume
 
 Convert Markdown resume → AI-optimized Reactive Resume → GitHub Pages site
 
-## Usage
+## Auto-publish
 
-1. Write resume in: resumes/input.md
+The site publishes automatically whenever `resumes/input.md` changes on `main`:
 
-2. Push to GitHub
-
+1. Edit `resumes/input.md` (locally or directly on GitHub)
+2. Push to `main`
 3. GitHub Actions will:
+   - Convert Markdown → JSON (DeepSeek, see `scripts/local-build.js`)
+   - Apply enrichment patch (`scripts/enrich.js`): restore fixed content and strip private fields such as phone number
+   - Commit the generated `resumes/output.json` and `web/src/resume.json` back to the repo
+   - Build the React site (`web/`)
+   - Deploy to GitHub Pages (`gh-pages` branch)
 
-- Convert Markdown → JSON (Codex agent)
-- Build React site
-- Deploy to GitHub Pages
+## Required secret
+
+- `DEEPSEEK_API_KEY` — DeepSeek API key used by the resume builder.
+  Add it in GitHub repo Settings → Secrets and variables → Actions.
+
+## Manual local build
+
+```bash
+npm install
+# Windows:
+set DEEPSEEK_API_KEY=sk-xxx
+node scripts/local-build.js
+```
+
+This regenerates `resumes/output.json` and `web/src/resume.json` locally.
 
 ## Output
 
-https://yourname.github.io/cv
-
+https://forrestxm.github.io/cv

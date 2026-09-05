@@ -3,26 +3,63 @@ name: Deploy Resume Site
 on:
   push:
     branches: [main]
+    paths:
+      - 'resumes/input.md'
+      - 'web/**'
+      - '.github/workflows/deploy.yml'
+      - '!web/src/resume.json'
+      - '!resumes/output.json'
 
 permissions:
   contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect input.md change
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            input:
+              - 'resumes/input.md'
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 24
+
+      - name: Install deps (resume builder)
+        if: steps.filter.outputs.input == 'true'
+        run: npm install --no-audit --no-fund
+
+      - name: Generate resume JSON
+        if: steps.filter.outputs.input == 'true'
+        run: node scripts/local-build.js
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+
+      - name: Commit generated resume JSON
+        if: steps.filter.outputs.input == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'Auto: regenerate resume JSON from input.md'
+          file_pattern: 'resumes/output.json web/src/resume.json'
 
       - name: Install web deps
         run: |
           cd web
-          npm install
+          npm install --no-audit --no-fund
 
       - name: Build web
         run: |

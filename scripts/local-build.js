@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import OpenAI from "openai";
 import { RESUME_PROMPT } from "../agent/prompt.js";
+import { enrichResume } from "./enrich.js";
 
 if (!process.env.DEEPSEEK_API_KEY) {
   throw new Error("❌ DEEPSEEK_API_KEY is missing in environment variables");
@@ -32,6 +33,11 @@ const completion = await client.chat.completions.create({
 });
 
 const json = JSON.parse(completion.choices[0].message.content);
+
+const enriched = enrichResume(json);
+if (enriched) {
+  console.log("ℹ️ Applied enrichment patch (fixed content, privacy)");
+}
 
 fs.writeFileSync(outputPath, JSON.stringify(json, null, 2));
 fs.writeFileSync(webPath, JSON.stringify(json, null, 2));
