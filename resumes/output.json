@@ -74,6 +74,19 @@
   ],
   "skills": [
     {
+      "name": "Leadership & Management",
+      "level": "",
+      "keywords": [
+        "软件开发团队管理",
+        "项目管理",
+        "跨部门协作",
+        "教练式管理",
+        "Agile Scrum",
+        "产品优先级协调",
+        "研发质量体系建设"
+      ]
+    },
+    {
       "name": "Programming Languages",
       "level": "",
       "keywords": [
@@ -214,6 +227,74 @@
     {
       "name": "IBM Blockchain Essentials",
       "issuer": "IBM"
+    },
+    {
+      "name": "AI Fundamentals",
+      "issuer": ""
+    },
+    {
+      "name": "Advanced Leadership Experience",
+      "issuer": ""
+    },
+    {
+      "name": "Leadership Imperative",
+      "issuer": ""
+    },
+    {
+      "name": "Secure development practices",
+      "issuer": ""
+    },
+    {
+      "name": "Inspirational Leadership Workshop",
+      "issuer": ""
+    },
+    {
+      "name": "Apache Geronimo PMC member",
+      "issuer": ""
+    },
+    {
+      "name": "Architecture Thinking",
+      "issuer": ""
+    },
+    {
+      "name": "Leadership in a Project Team Environment",
+      "issuer": ""
+    },
+    {
+      "name": "MBTI workshop",
+      "issuer": ""
+    },
+    {
+      "name": "Advanced Negotiation",
+      "issuer": ""
+    },
+    {
+      "name": "Business Acumen",
+      "issuer": ""
+    },
+    {
+      "name": "Complicated Problem Solving",
+      "issuer": ""
+    },
+    {
+      "name": "Software Development Life Cycle methodology and best practices",
+      "issuer": ""
+    },
+    {
+      "name": "Senior Software/Solution Technical Support",
+      "issuer": ""
+    },
+    {
+      "name": "Software Development Team Coach",
+      "issuer": ""
+    },
+    {
+      "name": "Enterprise Social Solutions Domain Knowledge",
+      "issuer": ""
+    },
+    {
+      "name": "AI in GxP",
+      "issuer": ""
     }
   ]
 }
