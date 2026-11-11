@@ -1,18 +1,13 @@
 {
   "basics": {
     "name": "夏铭",
-    "label": "资深软件开发经理",
     "email": "forrestxm@126.com",
     "url": "https://forrestxm.github.io/cv",
-    "summary": "资深软件开发经理，拥有超过25年横跨软件全球化(globalization and localization)、中间件平台（IBM WebSphere）、企业社交软件(IBM Connections)、企业级存储可观测性软件（Virtual Storage Analytics）和存储自动化软件(Terraform and Ansible)的丰富开发经验，在长期的软件工程实践中形成了以身作则，化繁为简，善于协作共赢的工作风格。有高度的工作责任感和主动性。有良好的工作承压力，擅长带领团队一起攻坚完成任务。",
+    "summary": "资深软件开发经理，拥有超过25年横跨软件全球化(globalization and localization)、中间件平台（IBM WebSphere）、企业社交软件(IBM Connections)、企业级存储可观测性软件（Virtual Storage Analytics）和存储自动化软件(Terraform and Ansible)的丰富开发经验。在长期的软件工程实践中形成了以身作则、化繁为简、善于协作共赢的工作风格。有高度的工作责任感和主动性，有良好的工作承压力，擅长带领团队一起攻坚完成任务。",
     "location": {
-      "countryCode": "",
-      "address": "",
-      "postalCode": "",
-      "city": "",
-      "region": ""
+      "countryCode": "CN"
     },
-    "profiles": []
+    "label": "资深软件开发经理"
   },
   "work": [
     {
@@ -20,10 +15,10 @@
       "position": "研发负责人，软件开发经理",
       "startDate": "2026-05",
       "endDate": "",
-      "summary": "从事eCOA/ePData临床研究软件研发管理与质量体系建设",
+      "summary": "从事eCOA/ePData临床研究软件研发管理与质量体系建设。",
       "highlights": [
         "负责公司eCOA/ePData平台研发管理与测试团队管理，覆盖招聘面试、绩效目标设定、能力矩阵建设、1on1辅导与人才培养",
-        "主导计算机化系统验证（CSV）体系建设：主笔CSV SOP并迭代（v2.0 → v3.0 → v3.1，规划v4.0），搭建验证流程节点交付物模板库，驱动ePData v3.1从验证计划（VP）、用户需求规范（URS）、风险评估（RA）、功能/设计/配置规范到IQ/OQ/PQ测试用例与需求追溯矩阵（RTM）的全套交付物编写、评审与签署",
+        "主导计算机化系统验证（CSV）体系建设：主笔CSV SOP并迭代（v2.0 → v3.0 → v4.0），搭建验证流程节点交付物模板库，驱动ePData v3.1从验证计划（VP）、用户需求规范（URS）、风险评估（RA）、功能/设计/配置规范到IQ/OQ/PQ测试用例与需求追溯矩阵（RTM）的全套交付物编写、评审与签署",
         "起草研发部门SOP体系（CSV、SDLC、Security、BCP&DR），参与公司QMS质量体系整改，负责基本风险控制policy与AI Policy的制定、评审与更新",
         "代表研发部门应对客户及第三方稽查/审计（默沙东MSD、PPD、石药、翰森、凯诺、ICON等），讲解产品功能与SDLC/CSV流程、提供场景化测试证据，负责CAPA制定、鱼骨图根因分析与回复闭环",
         "推进AI赋能研发：调研并落地GitLab issue/禅道缺陷管理agent skills（issue-fix、zentao-bug-fix、zentao-testcase-operations、文档转换技能），制定缺陷管理流程，通过问卷调研、培训与工具配置推动测试团队AI工具普及",
@@ -44,10 +39,10 @@
       "position": "软件开发经理，存储自动化软件产品经理",
       "startDate": "2019-08",
       "endDate": "2025-11",
-      "summary": "从事存储管理软件开发管理，团队人数14人",
+      "summary": "从事存储管理软件开发管理，团队人数14人。",
       "highlights": [
         "负责Dell EMC企业存储系统自动化管理（Terraform, Ansible）软件开发",
-        "对接存储平台架构师，产品经理，开发经理，明确自动化管理需求",
+        "对接存储平台架构师、产品经理、开发经理，明确自动化管理需求",
         "对接外部客户自动化管理需求，整体协调产品特性开发优先级",
         "负责Dell EMC软件定义存储产品云端自动化部署开发，涉及AWS、Azure公有云环境产品部署拓扑图定义和实施",
         "推动和开发CI/CD最佳实践在所属团队的实施，熟悉Jenkins Pipeline技术栈"
@@ -58,16 +53,16 @@
       "position": "软件测试工程师，软件开发工程师，软件发布经理，软件开发经理",
       "startDate": "2000-07",
       "endDate": "2019-07",
-      "summary": "企业级社交解决方案，中间件软件等，团队人数30人",
+      "summary": "企业级社交解决方案，中间件软件等，团队人数30人。",
       "highlights": [
-        "拥有产品功能端到端的开发经验，从需求分析，产品设计，架构，开发，测试，直到交付和后期维护",
+        "拥有产品功能端到端的开发经验，从需求分析、产品设计、架构、开发、测试，直到交付和后期维护",
         "带领和指导上海开发团队参与IBM全球分布式开发协作",
         "采用教练式管理手段培养团队成员，帮助他们取得职业生涯的发展",
         "作为核心人员保持与美国和爱尔兰团队的密切沟通",
         "取得产品的各项符合性开发要求，向本地和全球发起人负责",
-        "支持本地客户的产品使用，包括中国工商银行，人民教育出版社",
+        "支持本地客户的产品使用，包括中国工商银行、人民教育出版社",
         "参与产品SaaS交付的运营OnDuty工作，负责协调问题的及时高效解决",
-        "负责如下产品组件的开发维护工作：博客, 论坛, 工作日历, 社交化书签, 社交化联系人管理, 产品安装程序, 人员微服务模块",
+        "负责如下产品组件的开发维护工作：博客、论坛、工作日历、社交化书签、社交化联系人管理、产品安装程序、人员微服务模块",
         "交付了如下产品版本：IBM Connections 6.0 and CRs"
       ]
     }
@@ -99,17 +94,18 @@
     },
     {
       "name": "DevOps",
+      "level": "",
       "keywords": [
         "Kubernetes",
         "Docker",
         "GitLab CI",
-        "Jenkins Pipeline",
         "阿里云ECS/SLB/EIP/NAS",
         "禅道(Zentao)"
       ]
     },
     {
       "name": "质量与合规",
+      "level": "",
       "keywords": [
         "GAMP 5",
         "CSV",
@@ -123,6 +119,7 @@
     },
     {
       "name": "安全合规",
+      "level": "",
       "keywords": [
         "semgrep(SAST)",
         "opensca(SCA)",
@@ -133,6 +130,7 @@
     },
     {
       "name": "AI赋能",
+      "level": "",
       "keywords": [
         "Codex/Claude agent skills",
         "GitLab issue/禅道缺陷工作流",
@@ -141,6 +139,7 @@
     },
     {
       "name": "研发管理",
+      "level": "",
       "keywords": [
         "Scrum",
         "测试管理",
@@ -151,6 +150,7 @@
     },
     {
       "name": "Java/Java EE",
+      "level": "",
       "keywords": [
         "WebSphere Application Server",
         "JSF/Struts/Spring/Velocity/Tiles",
@@ -161,7 +161,8 @@
       ]
     },
     {
-      "name": "Node.js微服务",
+      "name": "Nodejs based microservices",
+      "level": "",
       "keywords": [
         "Nodejs/npm",
         "Loopback",
@@ -172,6 +173,7 @@
     },
     {
       "name": "IaaS/PaaS",
+      "level": "",
       "keywords": [
         "vSphere",
         "KVM/libvirt",
@@ -181,7 +183,8 @@
       ]
     },
     {
-      "name": "自动化CI/CD",
+      "name": "自动化 CI/CD",
+      "level": "",
       "keywords": [
         "Selenium/Selenium Grid",
         "Jenkins"
@@ -189,11 +192,35 @@
     },
     {
       "name": "其他",
+      "level": "",
       "keywords": [
         "Python",
         "IBM Security Essentials",
         "Linux shell scripting",
         "软件全球化和本地化方法及工具"
+      ]
+    },
+    {
+      "name": "项目管理与领导力",
+      "level": "",
+      "keywords": [
+        "Registered Scrum Master and Product Owner by Scrum Inc.",
+        "Project Management Professional (PMI)",
+        "Agile Scrum Master",
+        "Advanced Leadership Experience",
+        "Leadership Imperative",
+        "Inspirational Leadership Workshop",
+        "IBM Enterprise Design Thinking",
+        "Architecture Thinking",
+        "Leadership in a Project Team Environment",
+        "MBTI workshop",
+        "Advanced Negotiation",
+        "Business Acumen",
+        "Complicated Problem Solving",
+        "Software Development Life Cycle methodology and best practices",
+        "Senior Software/Solution Technical Support",
+        "Software Development Team Coach",
+        "Enterprise Social Solutions Domain Knowledge"
       ]
     }
   ],
@@ -215,22 +242,7 @@
       "date": ""
     },
     {
-      "name": "Advanced Leadership Experience",
-      "issuer": "",
-      "date": ""
-    },
-    {
-      "name": "Leadership Imperative",
-      "issuer": "",
-      "date": ""
-    },
-    {
       "name": "Secure development practices",
-      "issuer": "",
-      "date": ""
-    },
-    {
-      "name": "Inspirational Leadership Workshop",
       "issuer": "",
       "date": ""
     },
@@ -255,114 +267,115 @@
       "date": ""
     },
     {
-      "name": "IBM Enterprise Design Thinking",
-      "issuer": "",
-      "date": ""
-    },
-    {
-      "name": "Architecture Thinking",
-      "issuer": "",
-      "date": ""
-    },
-    {
-      "name": "Leadership in a Project Team Environment",
-      "issuer": "",
-      "date": ""
-    },
-    {
-      "name": "MBTI workshop",
-      "issuer": "",
-      "date": ""
-    },
-    {
-      "name": "Advanced Negotiation",
-      "issuer": "",
-      "date": ""
-    },
-    {
-      "name": "Business Acumen",
-      "issuer": "",
-      "date": ""
-    },
-    {
-      "name": "Complicated Problem Solving",
-      "issuer": "",
-      "date": ""
-    },
-    {
-      "name": "Software Development Life Cycle methodology and best practices",
-      "issuer": "",
-      "date": ""
-    },
-    {
-      "name": "Senior Software/Solution Technical Support",
-      "issuer": "",
-      "date": ""
-    },
-    {
-      "name": "Software Development Team Coach",
-      "issuer": "",
-      "date": ""
-    },
-    {
-      "name": "Enterprise Social Solutions Domain Knowledge",
-      "issuer": "",
-      "date": ""
-    },
-    {
       "name": "Enterprise Design Thinking Practitioner",
-      "issuer": "",
+      "issuer": "IBM",
       "date": ""
     },
     {
       "name": "IBM Security Essentials for Architects",
-      "issuer": "",
+      "issuer": "IBM",
       "date": ""
     },
     {
       "name": "IBM Cloud Private – Foundation Technology",
-      "issuer": "",
+      "issuer": "IBM",
       "date": ""
     },
     {
       "name": "IBM Cloud Essentials",
-      "issuer": "",
+      "issuer": "IBM",
       "date": ""
     },
     {
       "name": "Get Started with Containers",
-      "issuer": "",
+      "issuer": "IBM",
       "date": ""
     },
     {
-      "name": "IBM Cloud o Cognitive Practitioner",
-      "issuer": "",
+      "name": "IBM Cloud Cognitive Practitioner",
+      "issuer": "IBM",
       "date": ""
     },
     {
       "name": "Docker Essentials: A Developer Introduction",
-      "issuer": "",
+      "issuer": "IBM",
       "date": ""
     },
     {
       "name": "Python for Data Science",
-      "issuer": "",
+      "issuer": "IBM",
       "date": ""
     },
     {
       "name": "Machine Learning with Python Level 1",
-      "issuer": "",
+      "issuer": "IBM",
       "date": ""
     },
     {
       "name": "Data Science for Business Level 2",
-      "issuer": "",
+      "issuer": "IBM",
       "date": ""
     },
     {
       "name": "IBM Blockchain Essentials",
-      "issuer": "",
+      "issuer": "IBM",
       "date": ""
+    },
+    {
+      "name": "Advanced Leadership Experience",
+      "issuer": ""
+    },
+    {
+      "name": "Leadership Imperative",
+      "issuer": ""
+    },
+    {
+      "name": "Inspirational Leadership Workshop",
+      "issuer": ""
+    },
+    {
+      "name": "IBM Enterprise Design Thinking",
+      "issuer": ""
+    },
+    {
+      "name": "Architecture Thinking",
+      "issuer": ""
+    },
+    {
+      "name": "Leadership in a Project Team Environment",
+      "issuer": ""
+    },
+    {
+      "name": "MBTI workshop",
+      "issuer": ""
+    },
+    {
+      "name": "Advanced Negotiation",
+      "issuer": ""
+    },
+    {
+      "name": "Business Acumen",
+      "issuer": ""
+    },
+    {
+      "name": "Complicated Problem Solving",
+      "issuer": ""
+    },
+    {
+      "name": "Software Development Life Cycle methodology and best practices",
+      "issuer": ""
+    },
+    {
+      "name": "Senior Software/Solution Technical Support",
+      "issuer": ""
+    },
+    {
+      "name": "Software Development Team Coach",
+      "issuer": ""
+    },
+    {
+      "name": "Enterprise Social Solutions Domain Knowledge",
+      "issuer": ""
     },
     {
       "name": "AI in GxP",
