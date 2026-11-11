@@ -26,26 +26,30 @@
 ### 2026.5 – 至今 研发负责人，软件开发经理，从事eCOA/ePData临床研究软件研发管理与质量体系建设
 
 #### 职责：
-- 负责公司eCOA/ePData平台研发管理，带领测试团队并推进研发质量体系建设
-- 主导计算机化系统验证（CSV）体系建设：编写CSV SOP并推动获批落地，搭建流程节点交付物模板库，驱动系统的验证计划、URS、风险评估等交付物的编写、评审与签署
-- 代表研发部门应对客户稽查/审计，负责CAPA制定、根因分析（鱼骨图分析法）与回复闭环
-- 推进AI赋能研发：调研并落地GitLab issue缺陷管理开源方案与agent skills（issue-fix、zentao-bug-fix），制定缺陷管理流程，推动测试团队AI工具普及
-- 负责开源合规与安全：生成开源许可证报告与SBOM，使用opensca/semgrep完成依赖漏洞扫描与修复，开展渗透测试
-- 负责DevOps基础设施：扩容Kubernetes集群、优化GitLab CI流水线（并行stages与runner并发）、完成禅道系统跨版本升级并与GitLab打通缺陷可追溯性
-- 参与公司SOP框架调整，负责基本风险控制policy与AI Policy的更新
+- 负责公司eCOA/ePData平台研发管理与测试团队管理，覆盖招聘面试、绩效目标设定、能力矩阵建设、1on1 辅导与人才培养
+- 主导计算机化系统验证（CSV）体系建设：主笔CSV SOP并迭代（v2.0 → v3.0 → v3.1，规划v4.0），搭建验证流程节点交付物模板库，驱动ePData v3.1 从验证计划（VP）、用户需求规范（URS）、风险评估（RA）、功能/设计/配置规范到IQ/OQ/PQ测试用例与需求追溯矩阵（RTM）的全套交付物编写、评审与签署
+- 起草研发部门SOP体系（CSV、SDLC、Security、BCP&DR），参与公司QMS质量体系整改，负责基本风险控制policy与AI Policy的制定、评审与更新
+- 代表研发部门应对客户及第三方稽查/审计（默沙东MSD、PPD、石药、翰森、凯诺、ICON等），讲解产品功能与SDLC/CSV流程、提供场景化测试证据，负责CAPA制定、鱼骨图根因分析与回复闭环
+- 推进AI赋能研发：调研并落地GitLab issue/禅道缺陷管理agent skills（issue-fix、zentao-bug-fix、zentao-testcase-operations、文档转换技能），制定缺陷管理流程，通过问卷调研、培训与工具配置推动测试团队AI工具普及
+- 负责开源合规与安全：产出SBOM与开源许可证（OSS）报告，使用opensca/semgrep完成SCA/SAST扫描与漏洞修复，组织渗透测试
+- 负责DevOps基础设施与工具链：Kubernetes集群扩容、GitLab CI流水线并行优化、禅道跨版本升级并与GitLab打通缺陷可追溯性
+- 负责云资源与交付基础设施：阿里云ECS/SLB/EIP/MongoDB选型与采购，ePayment微信小程序服务端环境规划与部署
 
 #### 成果：
-- 建立CSV SOP体系并获QA和CEO批复，v3.1验证交付物按期完成审批签署
-- 完成禅道22.2升级与GitLab集成（bug#xxx自动关联），提升缺陷管理与代码变更可追溯性
-- 修复产品critical/high级依赖漏洞，输出SBOM、OSS、SAST等审计所需报告，支撑客户稽查顺利通过
-- 落地AI agent skills，实现缺陷从Issue到修复代码、MR的自动化流转
-- 完成多轮稽查的应对与CAPA闭环
+- CSV SOP体系获QA与CEO批复（v3.0）并持续迭代至v3.1；ePData v3.1 的VP/URS/RA/规范类文档按期完成评审签署，v2.7.0验证总结报告完成签批
+- 支撑默沙东（MSD）准入稽查与PPD稽查：完成产品演示视频、特定场景测试用例截图证据与培训资料准备，全程应答产品研发与质量体系质询
+- 主导ICON供应商准入稽查6条finding（3 major / 3 other）的CAPA，完成根因分析与整改回复；推动SDLC SOP升级至8.0以满足翰森CAPA生效要求
+- 完成禅道22.2升级与GitLab集成（提交信息含bug#xxx自动关联），显著提升缺陷管理与代码变更可追溯性
+- 完成v3产品依赖漏洞扫描与critical/high级修复，输出SBOM、OSS、SCA、SAST、渗透测试等审计所需报告
+- 落地AI agent skills，打通缺陷从Issue/禅道到修复代码、MR的自动化流转，并实现测试用例文档到禅道的批量导入
+- 完成测试工程师招聘（多轮简历筛选与面试），建立测试团队2026下半年绩效指标与能力建设矩阵
 
 #### 工作中涉及的技术栈：
-- DevOps: Kubernetes, Docker, GitLab CI, 阿里云ECS, 禅道(Zentao)
-- 安全合规: semgrep, opensca, SBOM, 渗透测试, GAMP 5, CSV
-- AI赋能: Codex/Claude agent skills, GitLab issue工作流
-- 研发管理: Scrum, 测试管理, 缺陷管理, 跨部门协作
+- DevOps: Kubernetes, Docker, GitLab CI, 阿里云ECS/SLB/EIP/NAS, 禅道(Zentao)
+- 质量与合规: GAMP 5, CSV, 3Q(IQ/OQ/PQ), ALCOA++, RTM, CAPA/鱼骨图, QMS, GxP
+- 安全合规: semgrep(SAST), opensca(SCA), SBOM, 开源许可证合规, 渗透测试
+- AI赋能: Codex/Claude agent skills, GitLab issue/禅道缺陷工作流, AI in GxP监管研究
+- 研发管理: Scrum, 测试管理, 缺陷管理, 跨部门协作, 供应商稽查应对
 
 ## Dell EMC 工作经验： 
 
