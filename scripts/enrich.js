@@ -45,6 +45,15 @@ export function enrichResume(json) {
   let changed = false;
 
   if (!json.basics) json.basics = {};
+  // 模型偶发用 headline 替代 label，统一归一化为 label（Reactive Resume 字段名）
+  if (!json.basics.label && json.basics.headline) {
+    json.basics.label = json.basics.headline;
+    changed = true;
+  }
+  if (json.basics.headline) {
+    delete json.basics.headline;
+    changed = true;
+  }
   if (!json.basics.label) {
     json.basics.label = LABEL;
     changed = true;
@@ -64,7 +73,8 @@ export function enrichResume(json) {
     }
   }
 
-  if (!json.skills.some((s) => s.name === "Leadership & Management")) {
+  if (!Array.isArray(json.skills)) json.skills = [];
+  if (!json.skills.some((s) => s?.name === "Leadership & Management")) {
     json.skills.unshift({
       name: LEADERSHIP_SKILLS.name,
       level: "",

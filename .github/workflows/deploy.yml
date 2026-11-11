@@ -9,6 +9,8 @@ on:
       - '.github/workflows/deploy.yml'
       - '!web/src/resume.json'
       - '!resumes/output.json'
+  # 允许手动触发：新增/修正 DEEPSEEK_API_KEY 后可直接重跑，无需再改 input.md
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -22,7 +24,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -34,23 +37,91 @@ jobs:
             input:
               - 'resumes/input.md'
 
+      - name: Decide whether to regenerate
+        id: decide
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "${{ steps.filter.outputs.input }}" = "true" ]; then
+            echo "regenerate=true" >> "$GITHUB_OUTPUT"
+            echo "输入文件已变更或为手动触发，将尝试 AI 重新生成。"
+          else
+            echo "regenerate=false" >> "$GITHUB_OUTPUT"
+            echo "输入文件未变更，跳过 AI 重新生成，直接使用已提交的 JSON 构建部署。"
+          fi
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 24
 
+      # 预检：只判断密钥是否存在，绝不打印密钥内容。
+      # 未配置密钥时不再让整个部署失败，而是告警并回退到仓库中已提交的 JSON。
+      - name: Preflight - check DEEPSEEK_API_KEY
+        id: key
+        if: steps.decide.outputs.regenerate == 'true'
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          set -u
+          if [ -n "${DEEPSEEK_API_KEY}" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+            echo "DEEPSEEK_API_KEY 已配置（长度 ${#DEEPSEEK_API_KEY} 字符）。"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::warning title=DEEPSEEK_API_KEY 未配置::跳过 AI 重新生成，改用仓库中已提交的 resumes/output.json 继续构建与部署。"
+            {
+              echo "### ⚠️ 未检测到仓库密钥 \`DEEPSEEK_API_KEY\`"
+              echo ""
+              echo "本次 AI 重新生成已被跳过，部署继续使用仓库中**已提交**的 \`resumes/output.json\`（内容可能滞后于 \`resumes/input.md\`）。"
+              echo ""
+              echo "**修复方式**"
+              echo ""
+              echo "1. 打开 https://github.com/${{ github.repository }}/settings/secrets/actions"
+              echo "2. 点击 **New repository secret**，名称必须精确为 \`DEEPSEEK_API_KEY\`（区分大小写，不能放在 Environment 作用域下，除非 job 声明了同名 environment）"
+              echo "3. 保存后回到 Actions 页，手动运行 **Deploy Resume Site**（已支持 workflow_dispatch）验证"
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
       - name: Install deps (resume builder)
-        if: steps.filter.outputs.input == 'true'
+        if: steps.key.outputs.available == 'true'
         run: npm install --no-audit --no-fund
 
+      # 生成失败（密钥无效、额度不足、接口超时等）同样不阻塞部署
       - name: Generate resume JSON
-        if: steps.filter.outputs.input == 'true'
+        id: generate
+        if: steps.key.outputs.available == 'true'
+        continue-on-error: true
         run: node scripts/local-build.js
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
 
+      - name: Report generation result
+        if: steps.decide.outputs.regenerate == 'true'
+        run: |
+          set -u
+          outcome="${{ steps.generate.outcome }}"
+          if [ "$outcome" = "success" ]; then
+            echo "✅ 简历 JSON 已由 DeepSeek 重新生成。"
+            {
+              echo "### ✅ 简历 JSON 已重新生成"
+              echo ""
+              echo "来源：\`resumes/input.md\` → DeepSeek → \`resumes/output.json\` + \`web/src/resume.json\`"
+            } >> "$GITHUB_STEP_SUMMARY"
+          elif [ "$outcome" = "failure" ]; then
+            echo "::warning title=AI 重新生成失败::已回退到仓库中已提交的 resumes/output.json，部署继续。"
+            {
+              echo "### ⚠️ AI 重新生成失败，已回退"
+              echo ""
+              echo "部署使用仓库中已提交的 \`resumes/output.json\`。请查看「Generate resume JSON」步骤日志，常见原因：API Key 无效、余额/额度不足、接口超时。"
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "ℹ️ 已跳过 AI 重新生成（未配置密钥），使用已提交的 JSON。"
+          fi
+
+      - name: Verify resume JSON is deployable
+        run: node scripts/verify-resume.js
+
       - name: Commit generated resume JSON
-        if: steps.filter.outputs.input == 'true'
+        if: steps.decide.outputs.regenerate == 'true' && steps.generate.outcome == 'success'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'Auto: regenerate resume JSON from input.md'
