@@ -77,6 +77,22 @@ function normalizeWork(work) {
       console.warn(`ℹ️  ${job.name}：无成果条目（achievements 为空），简历将只展示职责`);
     }
   }
+
+  // 在职状态兜底：最新一段经历若被填成"当月结束"，页面上会显示成已离职。
+  // 源文档写「至今」时模型偶尔会把当前年月填进 endDate，这里按"仍在职"处理并告警。
+  const first = work[0];
+  if (first && typeof first.endDate === "string") {
+    const now = new Date();
+    const current = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+    if (first.endDate === current) {
+      console.warn(
+        `⚠️  ${first.name}：endDate 被填成当前月份（${current}），按"至今"处理并清空；若确已离职请在 input.md 写明具体结束年月`
+      );
+      first.endDate = "";
+      changed = true;
+    }
+  }
+
   return changed;
 }
 

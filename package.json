@@ -1,6 +1,12 @@
 {
   "name": "cv",
   "type": "module",
+  "scripts": {
+    "build": "node scripts/local-build.js",
+    "translate": "node scripts/translate.js",
+    "verify": "node scripts/verify-resume.js",
+    "pdf": "node scripts/build-pdf.mjs"
+  },
   "dependencies": {
     "openai": "^4.104.0"
   }

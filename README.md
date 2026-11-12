@@ -33,6 +33,7 @@ The site publishes automatically whenever `resumes/input.md` changes on `main`:
    - Translate the JSON to English (`scripts/translate.js`) and write the `*.en.json` pair
    - Commit the generated `resumes/output.json`, `resumes/output.en.json` and the two `web/src/*.json` back to the repo
    - Build the React site (`web/`)
+   - Print the bilingual PDFs with headless Chrome and commit them (`scripts/build-pdf.mjs`)
    - Deploy to GitHub Pages (`gh-pages` branch)
 
 ## Work item schema: 职责 vs 成果
@@ -52,6 +53,43 @@ The split is enforced in three places:
 
 `web/src/App.jsx` renders `highlights` under 「主要职责」 and `achievements` under
 「主要成果」. 一段经历没有成果信息时，`achievements` 写成 `[]`，页面上会自动隐藏成果区块。
+
+## 离线 PDF
+
+`resumes/` 下保存中英文两份 PDF，用于线下投递：
+
+| 文件 | 内容 | 站点下载地址 |
+|---|---|---|
+| `resumes/夏铭-简历.pdf` | 中文版 | `downloads/resume-zh.pdf` |
+| `resumes/Forrest-Xia-Resume.pdf` | 英文版 | `downloads/resume-en.pdf` |
+
+```bash
+cd web && npm run build && cd ..
+npm run pdf        # 或 node scripts/build-pdf.mjs
+```
+
+- 用本机 Chrome/Edge 的无头模式打印，不额外安装 puppeteer；可用 `CHROME_PATH` 指定浏览器
+- 打印版式由 `web/src/style.css` 末尾的 `@media print` 控制：浅色、A4、13mm 页边距、分栏紧凑，与网页深色主题互不影响
+- 生成逻辑会自建本地 http 服务托管 `web/dist`，避免 `file://` 下 ES module 被 CORS 拦截
+- 目标文件被 PDF 阅读器占用时会自动回退为 `*-EN.pdf` 并给出提示
+- 每次导出会同时复制一份到 `web/public/downloads/`（站点源）和 `web/dist/downloads/`（当前产物）：
+  站点上的文件名用 ASCII（`resume-zh.pdf` / `resume-en.pdf`）避免中文路径编码问题，
+  下载时通过 `<a download>` 还原为可读文件名
+
+### 站点上的下载入口
+
+- Hero 区第三个按钮「下载 PDF 简历」/ `Download PDF`
+- 联系区的「PDF 简历」一行（与邮箱、GitHub 并列）
+- 两处都跟随当前语言切换；打印时自动隐藏（`.hero-actions`、`.pdf-download` 在 `@media print` 中被隐藏）
+
+### CI 中的 PDF
+
+PDF 现在随部署一起自动更新（`Generate resume PDFs` 步骤）：
+
+1. `npm run build` 之后用 runner 自带的 Chrome 打印中英文两份 PDF
+2. 失败只告警不阻塞：`continue-on-error`，站点沿用上一次提交的 PDF
+3. 成功后由 `git-auto-commit-action` 回写 `resumes/*.pdf` 与 `web/public/downloads/*.pdf`
+4. `deploy.yml` 的 `paths` 已排除这两类文件，自动提交不会再次触发工作流
 
 ## Required secret
 

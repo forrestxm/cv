@@ -19,7 +19,9 @@ export const UI = {
     hero: {
       tagline: ["以身作则，化繁为简，协作共赢。", "25 年横跨软件全球化、中间件、企业社交、存储自动化与临床研究软件的研发与管理经验。"],
       primary: "查看经历",
-      secondary: "联系我"
+      secondary: "联系我",
+      download: "下载 PDF 简历",
+      downloadTitle: "下载离线 PDF 版简历"
     },
     stats: [
       { num: "25+", unit: "年", label: "软件工程经验" },
@@ -47,6 +49,8 @@ export const UI = {
       title: "Contact",
       url: "在线简历",
       email: "邮箱",
+      pdf: "PDF 简历",
+      pdfHint: "下载",
       copy: "复制",
       copied: "已复制",
       copyTitle: "复制",
@@ -78,7 +82,9 @@ export const UI = {
         "25 years of R&D and management across software globalization, middleware, enterprise social software, storage automation and clinical research software."
       ],
       primary: "View Experience",
-      secondary: "Get in Touch"
+      secondary: "Get in Touch",
+      download: "Download PDF",
+      downloadTitle: "Download the offline PDF resume"
     },
     stats: [
       { num: "25+", unit: "yrs", label: "Software engineering" },
@@ -106,6 +112,8 @@ export const UI = {
       title: "Get in Touch",
       url: "Online Resume",
       email: "Email",
+      pdf: "PDF Resume",
+      pdfHint: "Download",
       copy: "Copy",
       copied: "Copied",
       copyTitle: "Copy",

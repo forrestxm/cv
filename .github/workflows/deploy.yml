@@ -11,6 +11,9 @@ on:
       - '!web/src/resume.en.json'
       - '!resumes/output.json'
       - '!resumes/output.en.json'
+      # PDF 由工作流自身重新生成并回写，不参与触发判断，避免自触发循环
+      - '!resumes/*.pdf'
+      - '!web/public/downloads/**'
   # 允许手动触发：新增/修正 DEEPSEEK_API_KEY 后可直接重跑，无需再改 input.md
   workflow_dispatch:
 
@@ -140,6 +143,48 @@ jobs:
         run: |
           cd web
           npm run build
+
+      # runner 不一定预装中日韩字体，缺字体时 PDF 中文会变方块
+      - name: Ensure CJK fonts
+        continue-on-error: true
+        run: |
+          if fc-list :lang=zh 2>/dev/null | head -1 | grep -q .; then
+            echo "系统中已有中文字体，跳过安装。"
+          else
+            echo "未检测到中文字体，安装 fonts-noto-cjk…"
+            sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+          fi
+
+      # 用 runner 自带的 Chrome 打印中英文 PDF（不引 puppeteer，无额外依赖）。
+      # 生成失败不阻塞部署：站点沿用仓库中已提交的上一版 PDF。
+      - name: Generate resume PDFs
+        id: pdf
+        continue-on-error: true
+        run: node scripts/build-pdf.mjs
+
+      - name: Report PDF result
+        if: always() && steps.pdf.outcome != 'skipped'
+        run: |
+          set -u
+          if [ "${{ steps.pdf.outcome }}" = "success" ]; then
+            echo "✅ 中英文 PDF 已重新生成并写入站点下载目录。"
+            {
+              echo "### 📄 离线 PDF 已更新"
+              echo ""
+              echo "- \`resumes/夏铭-简历.pdf\`、\`resumes/Forrest-Xia-Resume.pdf\`"
+              echo "- 站点下载：\`/downloads/resume-zh.pdf\`、\`/downloads/resume-en.pdf\`"
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::warning title=PDF 生成失败::站点继续部署，沿用上一次提交的 PDF。"
+            echo "### ⚠️ PDF 生成失败，沿用旧版本" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Commit generated PDFs
+        if: steps.pdf.outcome == 'success'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'Auto: regenerate resume PDFs'
+          file_pattern: 'resumes/*.pdf web/public/downloads/*.pdf'
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

@@ -6,6 +6,10 @@ import "./style.css";
 
 const GITHUB = "https://github.com/forrestxm";
 
+// 站点上的 PDF 用 ASCII 文件名（避免中文路径编码问题），下载时再改回可读文件名
+const PDF_FILE = { zh: "resume-zh.pdf", en: "resume-en.pdf" };
+const PDF_NAME = { zh: "夏铭-简历.pdf", en: "Forrest-Xia-Resume.pdf" };
+
 const MONTHS_EN = [
   "Jan", "Feb", "Mar", "Apr", "May", "Jun",
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
@@ -59,6 +63,9 @@ export default function App() {
   }, [lang]);
 
   const { basics, work, skills, certificates, languages, education } = data;
+
+  const pdfHref = `${import.meta.env.BASE_URL}downloads/${PDF_FILE[lang] ?? PDF_FILE.zh}`;
+  const pdfName = PDF_NAME[lang] ?? PDF_NAME.zh;
 
   // 语言切换：同步 <html lang>、标题、URL（可分享 ?lang=en）、本地记忆
   useEffect(() => {
@@ -179,6 +186,17 @@ export default function App() {
             <div className="hero-actions reveal" style={{ transitionDelay: "320ms" }}>
               <a className="btn btn-primary" href="#experience">{t.hero.primary}</a>
               <a className="btn btn-ghost" href="#contact">{t.hero.secondary}</a>
+              <a
+                className="btn btn-pdf"
+                href={pdfHref}
+                download={pdfName}
+                title={t.hero.downloadTitle}
+              >
+                <svg className="btn-pdf-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3v11m0 0 4.5-4.5M12 14l-4.5-4.5M4 18.5h16" />
+                </svg>
+                {t.hero.download}
+              </a>
             </div>
           </div>
           <div className="hero-scroll" aria-hidden="true">
@@ -409,6 +427,16 @@ export default function App() {
                 >
                   {t.contact.copy}
                 </button>
+              </a>
+            </Reveal>
+            <Reveal delay={160}>
+              <a className="contact-item pdf-download" href={pdfHref} download={pdfName}>
+                <span className="contact-icon">📄</span>
+                <div>
+                  <span className="contact-label">{t.contact.pdf}</span>
+                  <span className="contact-value">{pdfName}</span>
+                </div>
+                <span className="download-hint">{t.contact.pdfHint}</span>
               </a>
             </Reveal>
           </div>

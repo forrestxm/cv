@@ -141,6 +141,17 @@ ul { list-style: none; }
 .btn-primary:hover { background: #f0b457; transform: translateY(-2px); }
 .btn-ghost { border-color: var(--line-2); color: var(--text); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+/* PDF 下载：比主按钮更轻，但用强调色描边把它从"跳转锚点"里区分出来 */
+.btn-pdf {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  color: var(--accent); background: var(--accent-soft);
+}
+.btn-pdf:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent); transform: translateY(-2px); }
+.btn-pdf-icon {
+  width: 16px; height: 16px; flex: none;
+  fill: none; stroke: currentColor; stroke-width: 1.8;
+  stroke-linecap: round; stroke-linejoin: round;
+}
 .hero-scroll {
   position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%); z-index: 1;
   width: 1px; height: 56px; background: linear-gradient(180deg, transparent, var(--line-2));
@@ -292,6 +303,13 @@ ul { list-style: none; }
 }
 .copy-btn:hover { background: var(--accent); color: #14100a; }
 .copy-btn.done { background: var(--green); color: #fff; border-color: var(--green); }
+/* PDF 行的右侧提示，与「复制」按钮视觉一致但不可点击 */
+.download-hint {
+  flex: none; padding: 6px 16px; border-radius: 999px; font-size: 13px;
+  background: var(--accent-soft); color: var(--accent);
+  border: 1px solid rgba(224, 164, 73, 0.25); transition: 0.3s;
+}
+.pdf-download:hover .download-hint { background: var(--accent); color: #14100a; }
 .contact-note { text-align: center; color: var(--faint); font-size: 14px; margin-top: 30px; letter-spacing: 1px; }
 
 /* ---------- 页脚 ---------- */
@@ -336,4 +354,130 @@ ul { list-style: none; }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .hero-scroll span { animation: none; }
+}
+
+/* ---------- 打印 / PDF 导出 ----------
+   深色主题直接打印会整页涂墨，这里整体切换为浅色、紧凑、可跨页的简历版式。
+   必须放在最后，用以覆盖移动端断点（A4 页宽 ~794px 会命中 max-width:900px） */
+@media print {
+  @page { size: A4; margin: 14mm 13mm 12mm; }
+
+  :root {
+    --bg: #ffffff; --bg-2: #ffffff; --surface: #ffffff; --surface-2: #ffffff;
+    --text: #14181f; --muted: #333a43; --faint: #6a7280;
+    --line: rgba(0, 0, 0, 0.12); --line-2: rgba(0, 0, 0, 0.22);
+    --accent: #8a5a12; --accent-soft: rgba(138, 90, 18, 0.08);
+    --shadow: none;
+  }
+
+  html, body {
+    background: #fff !important; color: var(--text); font-size: 10.5pt; line-height: 1.6;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  a { color: inherit !important; text-decoration: none !important; }
+
+  .nav, .nav-toggle, .lang-toggle, .back-top, .skip-link,
+  .hero-scroll, .hero-actions, .copy-btn, .pdf-download { display: none !important; }
+
+  /* 滚动显现动画在打印时必须全部可见 */
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+  /* Hero → 简历抬头 */
+  .hero { min-height: auto; padding: 0 0 4mm; display: block; overflow: visible; }
+  .hero-bg { display: none !important; }
+  .hero-inner { max-width: none; }
+  .hero-eyebrow { font-size: 8.5pt; letter-spacing: 2px; margin-bottom: 2.5mm; gap: 8px; }
+  .hero-eyebrow::before { width: 22px; }
+  .hero-name { font-size: 22pt; letter-spacing: 2px; line-height: 1.15; }
+  .hero-tagline { font-size: 9pt; margin-top: 2mm; line-height: 1.6; max-width: none; }
+  .hero-stats { gap: 9mm; margin-top: 3.5mm; }
+  .stat-num { font-size: 13pt; }
+  .stat-num em { font-size: 8.5pt; }
+  .stat-label { font-size: 7.5pt; letter-spacing: 0; }
+
+  /* 区块：去掉大留白与背景色 */
+  .section { padding: 5mm 0 0; }
+  .section-alt, .section-contact { background: none !important; }
+  .section-head { margin-bottom: 3mm; text-align: left; }
+  .section-kicker { font-size: 7.5pt; letter-spacing: 2px; margin-bottom: 0.8mm; }
+  .section-title { font-size: 13pt; letter-spacing: 1px; }
+  .section-head::after { margin: 1.5mm 0 0; width: 22px; height: 1.5px; }
+
+  /* 关于 */
+  .about-grid { grid-template-columns: 1.55fr 1fr; gap: 7mm; max-width: none; }
+  .about-text p { font-size: 9pt; margin-bottom: 2mm; }
+  .about-cards { gap: 2mm; }
+  .mini-card { border: none; border-radius: 0; padding: 0; background: none; }
+  .mini-card h3 { font-size: 9.5pt; margin: 0 0 0.5mm; }
+  .mini-card p { font-size: 8pt; line-height: 1.5; }
+  .mini-icon { display: none; }
+
+  /* 经历：允许跨页，但标题、小结标题不与正文分离 */
+  .timeline { max-width: none; }
+  .timeline::before { display: none; }
+  .tl-item { padding: 0 0 4.5mm; break-inside: auto; page-break-inside: auto; }
+  .tl-head { break-after: avoid; page-break-after: avoid; }
+  .tl-body > p { break-after: avoid; page-break-after: avoid; }
+  .tl-dot { display: none; }
+  .tl-head { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 1.5mm 3mm; margin-bottom: 1.5mm; }
+  .tl-head h3 { font-size: 11pt; }
+  .tl-org { font-size: 9pt; }
+  .tl-date { font-size: 8.5pt; margin-left: auto; }
+  .tl-body p { font-size: 9pt; margin-bottom: 1mm; }
+  .tl-body ul { margin: 0; }
+  .tl-body ul li {
+    font-size: 8.8pt; line-height: 1.45; margin-bottom: 0.7mm; padding-left: 3.5mm;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .tl-block + .tl-block { margin-top: 2mm; }
+  .tl-body .tl-block-title {
+    font-size: 8.8pt; margin: 0 0 1mm;
+    break-after: avoid; page-break-after: avoid;
+  }
+  .tl-ach ul li { color: var(--text); opacity: 1; }
+
+  /* 技能：改用多列排版，避免两栏网格行高被长条目拉高产生大片空白 */
+  .skills-grid { display: block; column-count: 3; column-gap: 6mm; max-width: none; }
+  .skill-card {
+    display: block; break-inside: avoid; page-break-inside: avoid;
+    border: none; border-radius: 0; padding: 0; margin: 0 0 2.5mm; background: none;
+  }
+  .skill-card::before { display: none; }
+  .skill-top { margin-bottom: 1mm; gap: 1.5mm; }
+  .skill-card h3 { font-size: 9pt; line-height: 1.35; }
+  .skill-num { font-size: 7.5pt; }
+  .chips { gap: 1mm; }
+  .chips span {
+    font-size: 7.8pt; padding: 1px 5px; border-radius: 3px; line-height: 1.4;
+    background: none; border: 1px solid var(--line-2); color: var(--muted);
+  }
+
+  /* 证书 */
+  .cert-panel { border: none; border-radius: 0; padding: 0; max-width: none; background: none; }
+  .cert-panel .chips { gap: 1mm; }
+  .cert-panel .chips span { font-size: 7.8pt; padding: 1px 5px; line-height: 1.4; }
+
+  /* 教育 */
+  .edu-wrap { grid-template-columns: 1fr 1fr; gap: 6mm; max-width: none; }
+  .edu-card { border: none; border-radius: 0; padding: 0; background: none; }
+  .edu-card h3 { font-size: 10pt; margin-bottom: 0.5mm; }
+  .edu-school { font-size: 8.8pt; margin-bottom: 0.5mm; }
+  .edu-card p { font-size: 8.8pt; }
+  .lang-row span {
+    font-size: 7.8pt; padding: 1px 5px; background: none;
+    border: 1px solid var(--line-2); color: var(--muted);
+  }
+
+  /* 联系 */
+  .contact-grid { grid-template-columns: 1fr; gap: 1mm; max-width: none; }
+  .contact-item { display: block; border: none; border-radius: 0; padding: 0; background: none; break-inside: avoid; }
+  .contact-icon { display: none; }
+  .contact-item div { display: block; }
+  .contact-label { display: inline; font-size: 8pt; letter-spacing: 1px; }
+  .contact-label::after { content: "："; }
+  html[lang="en"] .contact-label::after { content: ": "; }
+  .contact-value { font-size: 9pt; }
+  .contact-note { text-align: left; margin-top: 2mm; font-size: 8pt; }
+
+  .footer { border-top: 1px solid var(--line); padding: 2.5mm 0 0; margin-top: 5mm; font-size: 7.5pt; color: var(--faint); }
 }
