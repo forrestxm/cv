@@ -1,0 +1,390 @@
+{
+  "basics": {
+    "name": "Forrest Xia",
+    "email": "forrestxm@126.com",
+    "url": "https://forrestxm.github.io/cv",
+    "summary": "Senior software development manager with over 25 years of extensive development experience spanning software globalization and localization, middleware platforms (IBM WebSphere), enterprise social software (IBM Connections), enterprise storage observability software (Virtual Storage Analytics), and storage automation software (Terraform and Ansible). Through long-term software engineering practice, has developed a working style of leading by example, simplifying complexity, and excelling at collaborative win-win outcomes. Highly responsible and proactive, with strong resilience under pressure, and skilled at leading teams to tackle and complete challenging tasks together.",
+    "location": {
+      "countryCode": "CN"
+    },
+    "label": "Senior Software Development Manager"
+  },
+  "work": [
+    {
+      "name": "Xincere Med",
+      "position": "R&D Engineering Manager",
+      "startDate": "2026-05",
+      "endDate": "",
+      "summary": "Engaged in R&D management and quality system development for eCOA/ePData clinical research software.",
+      "highlights": [
+        "Responsible for R&D management and testing team management of the company's eCOA/ePData platform, covering recruiting and interviewing, performance goal setting, competency matrix development, 1-on-1 coaching, and talent development",
+        "Led the establishment of the Computerized System Validation (CSV) system: authored the CSV SOP and iterated it (v2.0 → v3.0 → v3.1, with v4.0 planned), built a template library of validation process node deliverables, and drove the full set of deliverables for ePData v3.1 from Validation Plan (VP), User Requirements Specification (URS), Risk Assessment (RA), functional/design/configuration specifications to IQ/OQ/PQ test cases and Requirements Traceability Matrix (RTM), including authoring, review, and sign-off",
+        "Drafted the R&D department SOP system (CSV, SDLC, Security, BCP&DR), participated in the company's QMS quality system remediation, and was responsible for the formulation, review, and updating of basic risk control policies and the AI Policy",
+        "Represented the R&D department in responding to customer and third-party inspections/audits (Merck (MSD), PPD, CSPC, Hansoh, Kainuo, ICON, etc.), explained product features and SDLC/CSV processes, provided scenario-based test evidence, and was responsible for CAPA formulation, fishbone root cause analysis, and response closure",
+        "Advanced AI-enabled R&D: researched and implemented GitLab issue/ZenTao defect management agent skills (issue-fix, zentao-bug-fix, zentao-testcase-operations, document conversion skills), defined the defect management process, and promoted AI tool adoption across the testing team through survey research, training, and tool configuration",
+        "Responsible for open source compliance and security governance: established SBOM and open source license reporting mechanisms, and organized SCA/SAST scanning, vulnerability remediation, and penetration testing",
+        "Responsible for DevOps infrastructure and toolchain development: Kubernetes cluster expansion, GitLab CI pipeline parallelization rework, and integration of the defect management system with code repositories",
+        "Responsible for cloud resources and delivery infrastructure: Alibaba Cloud ECS/SLB/EIP/MongoDB selection and procurement, and planning and deployment of the ePayment WeChat Mini Program server environment"
+      ],
+      "achievements": [
+        "The CSV SOP system was approved by QA and the CEO (v3.0) and iterated to v3.1; all VP/URS/RA and specification documents for ePData v3.1 were reviewed and signed on schedule, and the v2.7.0 validation summary report was signed off",
+        "Supported the Merck (MSD) supplier onboarding audit and the PPD audit: delivered v3 product demo videos, screenshot evidence of scenario-specific test cases, and training materials, and responded throughout to inquiries on R&D processes and the quality system",
+        "Led the CAPA for 6 findings (3 major / 3 other) from the ICON supplier onboarding audit, completed fishbone root cause analysis and remediation responses; drove the upgrade of the SDLC SOP to 8.0 to meet the 9.30 effective date requirement of the Hansoh CAPA",
+        "Upgraded ZenTao across versions from 12.4.1 to 22.2, achieving end-to-end traceability between defects and code changes (commit messages containing bug#xxx are automatically linked)",
+        "Cleared all critical/high dependency vulnerabilities in the v3 product, and delivered the complete audit evidence package of SBOM, OSS licenses, SCA/SAST, and penetration testing in a single pass",
+        "AI agent skills were implemented, automating the full workflow from Issue/ZenTao defects to fix code and MRs, and enabling batch import of test case documents into ZenTao",
+        "Closed the loop on test engineer recruiting (multiple rounds of resume screening and interviews), and completed the establishment of the testing team's H2 2026 performance metrics and competency development matrix"
+      ]
+    },
+    {
+      "name": "Dell EMC",
+      "position": "Software Development Manager, Storage Automation Software Product Manager",
+      "startDate": "2019-08",
+      "endDate": "2025-11",
+      "summary": "Engaged in storage management software development management, with a team of 14 people.",
+      "highlights": [
+        "Responsible for software development for Dell EMC enterprise storage system automation management (Terraform, Ansible)",
+        "Liaised with storage platform architects, product managers, and development managers to clarify automation management requirements",
+        "Liaised with external customers on automation management requirements and coordinated overall product feature development priorities",
+        "Responsible for cloud-based automated deployment development for Dell EMC software-defined storage products, involving the definition and implementation of product deployment topologies in AWS and Azure public cloud environments",
+        "Promoted and developed the implementation of CI/CD best practices within the team, familiar with the Jenkins Pipeline technology stack"
+      ],
+      "achievements": []
+    },
+    {
+      "name": "IBM",
+      "position": "Software Test Engineer, Software Development Engineer, Software Release Manager, Software Development Manager",
+      "startDate": "2000-07",
+      "endDate": "2019-07",
+      "summary": "Enterprise social solutions, middleware software, etc., with a team of 30 people.",
+      "highlights": [
+        "Took end-to-end responsibility for product feature development, covering requirements analysis, product design, architecture, development, testing, and post-delivery maintenance",
+        "Led and guided the Shanghai development team in participating in IBM's global distributed development collaboration",
+        "Developed team members through coaching-style management to help them advance their careers",
+        "Maintained close communication with teams in the United States and Ireland as a core member",
+        "Met all product compliance development requirements and was accountable to local and global sponsors",
+        "Supported local customers in product usage, including Industrial and Commercial Bank of China and People's Education Press",
+        "Participated in OnDuty operations for product SaaS delivery, responsible for coordinating timely and efficient issue resolution"
+      ],
+      "achievements": [
+        "Delivered and maintained long-term product components including blogs, forums, working calendars, social bookmarks, social contact management, product installers, and people microservices",
+        "Delivered IBM Connections 6.0 and subsequent CR releases"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "East China Normal University",
+      "area": "Computer Science and Applications",
+      "studyType": "",
+      "startDate": "",
+      "endDate": "",
+      "score": "",
+      "courses": []
+    }
+  ],
+  "skills": [
+    {
+      "name": "Leadership & Management",
+      "level": "",
+      "keywords": [
+        "Software development team management",
+        "Project management",
+        "Cross-functional collaboration",
+        "Coaching-style management",
+        "Agile Scrum",
+        "Product priority coordination",
+        "R&D quality system development"
+      ]
+    },
+    {
+      "name": "DevOps",
+      "level": "",
+      "keywords": [
+        "Kubernetes",
+        "Docker",
+        "GitLab CI",
+        "Alibaba Cloud ECS/SLB/EIP/NAS",
+        "ZenTao"
+      ]
+    },
+    {
+      "name": "Quality and Compliance",
+      "level": "",
+      "keywords": [
+        "GAMP 5",
+        "CSV",
+        "3Q (IQ/OQ/PQ)",
+        "ALCOA++",
+        "RTM",
+        "CAPA/Fishbone diagram",
+        "QMS",
+        "GxP"
+      ]
+    },
+    {
+      "name": "Security and Compliance",
+      "level": "",
+      "keywords": [
+        "semgrep (SAST)",
+        "opensca (SCA)",
+        "SBOM",
+        "Open source license compliance",
+        "Penetration testing"
+      ]
+    },
+    {
+      "name": "AI Enablement",
+      "level": "",
+      "keywords": [
+        "Codex/Claude agent skills",
+        "GitLab issue/ZenTao defect workflow",
+        "AI in GxP regulated research"
+      ]
+    },
+    {
+      "name": "R&D Management",
+      "level": "",
+      "keywords": [
+        "Scrum",
+        "Test management",
+        "Defect management",
+        "Cross-functional collaboration",
+        "Supplier audit response"
+      ]
+    },
+    {
+      "name": "Java/Java EE",
+      "level": "",
+      "keywords": [
+        "WebSphere Application Server",
+        "JSF/Struts/Spring/Velocity/Tiles",
+        "JMS/WebSphere message bus",
+        "ibatis",
+        "Dojo/CSS/HTML",
+        "Jazz Ajax Framework – JAF"
+      ]
+    },
+    {
+      "name": "Nodejs based microservices",
+      "level": "",
+      "keywords": [
+        "Nodejs/npm",
+        "Loopback",
+        "Mongo",
+        "ElasticSearch",
+        "ReactJS"
+      ]
+    },
+    {
+      "name": "IaaS/PaaS",
+      "level": "",
+      "keywords": [
+        "vSphere",
+        "KVM/libvirt",
+        "Kubernetes",
+        "Docker",
+        "IBM Cloud Private"
+      ]
+    },
+    {
+      "name": "Automation CI/CD",
+      "level": "",
+      "keywords": [
+        "Selenium/Selenium Grid",
+        "Jenkins"
+      ]
+    },
+    {
+      "name": "Other",
+      "level": "",
+      "keywords": [
+        "Python",
+        "IBM Security Essentials",
+        "Linux shell scripting",
+        "Software globalization and localization methods and tools"
+      ]
+    },
+    {
+      "name": "Project Management and Leadership",
+      "level": "",
+      "keywords": [
+        "Registered Scrum Master and Product Owner by Scrum Inc.",
+        "Project Management Professional (PMI)",
+        "Agile Scrum Master",
+        "Advanced Leadership Experience",
+        "Leadership Imperative",
+        "Inspirational Leadership Workshop",
+        "IBM Enterprise Design Thinking",
+        "Architecture Thinking",
+        "Leadership in a Project Team Environment",
+        "MBTI workshop",
+        "Advanced Negotiation",
+        "Business Acumen",
+        "Complicated Problem Solving",
+        "Software Development Life Cycle methodology and best practices",
+        "Senior Software/Solution Technical Support",
+        "Software Development Team Coach",
+        "Enterprise Social Solutions Domain Knowledge"
+      ]
+    }
+  ],
+  "projects": [],
+  "languages": [
+    {
+      "language": "Chinese",
+      "fluency": "Native"
+    },
+    {
+      "language": "English",
+      "fluency": "Professional"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "AI Fundamentals",
+      "issuer": "",
+      "date": ""
+    },
+    {
+      "name": "Secure development practices",
+      "issuer": "",
+      "date": ""
+    },
+    {
+      "name": "Registered Scrum Master and Product Owner",
+      "issuer": "Scrum Inc.",
+      "date": ""
+    },
+    {
+      "name": "Apache Geronimo PMC member",
+      "issuer": "",
+      "date": ""
+    },
+    {
+      "name": "Agile Scrum Master",
+      "issuer": "",
+      "date": ""
+    },
+    {
+      "name": "Project Management Professional",
+      "issuer": "PMI",
+      "date": ""
+    },
+    {
+      "name": "Enterprise Design Thinking Practitioner",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "IBM Security Essentials for Architects",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "IBM Cloud Private – Foundation Technology",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "IBM Cloud Essentials",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "Get Started with Containers",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "IBM Cloud Cognitive Practitioner",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "Docker Essentials: A Developer Introduction",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "Python for Data Science",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "Machine Learning with Python Level 1",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "Data Science for Business Level 2",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "IBM Blockchain Essentials",
+      "issuer": "IBM",
+      "date": ""
+    },
+    {
+      "name": "Advanced Leadership Experience",
+      "issuer": ""
+    },
+    {
+      "name": "Leadership Imperative",
+      "issuer": ""
+    },
+    {
+      "name": "Inspirational Leadership Workshop",
+      "issuer": ""
+    },
+    {
+      "name": "IBM Enterprise Design Thinking",
+      "issuer": ""
+    },
+    {
+      "name": "Architecture Thinking",
+      "issuer": ""
+    },
+    {
+      "name": "Leadership in a Project Team Environment",
+      "issuer": ""
+    },
+    {
+      "name": "MBTI workshop",
+      "issuer": ""
+    },
+    {
+      "name": "Advanced Negotiation",
+      "issuer": ""
+    },
+    {
+      "name": "Business Acumen",
+      "issuer": ""
+    },
+    {
+      "name": "Complicated Problem Solving",
+      "issuer": ""
+    },
+    {
+      "name": "Software Development Life Cycle methodology and best practices",
+      "issuer": ""
+    },
+    {
+      "name": "Senior Software/Solution Technical Support",
+      "issuer": ""
+    },
+    {
+      "name": "Software Development Team Coach",
+      "issuer": ""
+    },
+    {
+      "name": "Enterprise Social Solutions Domain Knowledge",
+      "issuer": ""
+    },
+    {
+      "name": "AI in GxP",
+      "issuer": ""
+    }
+  ]
+}

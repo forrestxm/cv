@@ -73,6 +73,14 @@ ul { list-style: none; }
 }
 .nav-cta::after { display: none; }
 .nav-cta:hover { background: #f0b457; }
+/* 语言切换：轻量胶囊按钮，与 CTA 区分层级 */
+.lang-toggle {
+  font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
+  color: var(--accent); background: transparent; cursor: pointer;
+  border: 1px solid var(--line-2); border-radius: 999px; padding: 5px 13px;
+  transition: border-color 0.25s, background 0.25s, color 0.25s;
+}
+.lang-toggle:hover { border-color: var(--accent); background: var(--accent-soft); }
 .nav-toggle {
   display: none; flex-direction: column; gap: 5px;
   background: none; border: none; cursor: pointer; padding: 6px;
@@ -200,9 +208,18 @@ ul { list-style: none; }
   margin-bottom: 8px; padding-left: 16px;
 }
 .tl-body ul li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
-.tl-ach { margin-top: 6px; }
-.tl-ach-title { color: var(--text); font-size: 14px; font-weight: 600; margin: 10px 0 4px; }
+/* 职责 vs 成果：两块并列展示，标题需覆盖 .tl-body p 的默认样式 */
+.tl-block + .tl-block { margin-top: 14px; }
+.tl-body .tl-block-title {
+  color: var(--text); font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+  margin: 0 0 6px; text-transform: none;
+}
+.tl-body .tl-block-title::before {
+  content: ""; display: inline-block; width: 3px; height: 11px;
+  background: var(--accent); border-radius: 2px; margin-right: 7px; vertical-align: -1px;
+}
 .tl-ach ul li::before { content: "★"; font-size: 10px; top: 4px; }
+.tl-ach ul li { color: var(--text); opacity: 0.9; }
 
 /* ---------- 技能 ---------- */
 .skills-grid {
@@ -306,6 +323,7 @@ ul { list-style: none; }
   .nav-links.open { display: flex; }
   .nav-links a { padding: 12px 0; width: 100%; }
   .nav-links a::after { display: none; }
+  .lang-toggle { margin: 10px 0 4px; align-self: flex-start; }
   .nav-toggle { display: flex; }
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
   .skills-grid { grid-template-columns: 1fr; }

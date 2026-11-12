@@ -8,7 +8,9 @@ on:
       - 'web/**'
       - '.github/workflows/deploy.yml'
       - '!web/src/resume.json'
+      - '!web/src/resume.en.json'
       - '!resumes/output.json'
+      - '!resumes/output.en.json'
   # 允许手动触发：新增/修正 DEEPSEEK_API_KEY 后可直接重跑，无需再改 input.md
   workflow_dispatch:
 
@@ -105,6 +107,8 @@ jobs:
               echo "### ✅ 简历 JSON 已重新生成"
               echo ""
               echo "来源：\`resumes/input.md\` → DeepSeek → \`resumes/output.json\` + \`web/src/resume.json\`"
+              echo ""
+              echo "英文版：同一份 JSON 经 DeepSeek 翻译 → \`resumes/output.en.json\` + \`web/src/resume.en.json\`（翻译失败时保留上一版，不阻塞部署）"
             } >> "$GITHUB_STEP_SUMMARY"
           elif [ "$outcome" = "failure" ]; then
             echo "::warning title=AI 重新生成失败::已回退到仓库中已提交的 resumes/output.json，部署继续。"
@@ -125,7 +129,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'Auto: regenerate resume JSON from input.md'
-          file_pattern: 'resumes/output.json web/src/resume.json'
+          file_pattern: 'resumes/output.json resumes/output.en.json web/src/resume.json web/src/resume.en.json'
 
       - name: Install web deps
         run: |

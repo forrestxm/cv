@@ -41,6 +41,45 @@ const LANGUAGES = [
   { language: "English", fluency: "Professional" }
 ];
 
+// 规范化工作经历：职责(highlights) 与 成果(achievements) 必须是两个独立数组
+// 这里是兜底，真正的拆分责任在 agent/prompt.js，模型若仍混装则在此去重并告警
+const norm = (s) => String(s ?? "").replace(/\s+/g, "").replace(/[，。；、,.;:：]/g, "");
+
+function normalizeWork(work) {
+  let changed = false;
+  for (const job of work) {
+    if (!Array.isArray(job.highlights)) {
+      job.highlights = [];
+      changed = true;
+    }
+    if (!Array.isArray(job.achievements)) {
+      job.achievements = [];
+      changed = true;
+    }
+
+    // 同一事实不允许同时出现在职责和成果里：以职责为准，从成果中移除重复项
+    const dutyKeys = new Set(job.highlights.map(norm));
+    const before = job.achievements.length;
+    job.achievements = job.achievements.filter((a) => !dutyKeys.has(norm(a)));
+    if (job.achievements.length !== before) {
+      console.warn(
+        `⚠️  ${job.name}：职责/成果中有 ${before - job.achievements.length} 条重复，已从成果中移除`
+      );
+      changed = true;
+    }
+
+    // 成果里出现"负责…"这类范围性描述，说明模型没拆分干净，提示人工确认
+    const suspicious = job.achievements.filter((a) => /^(负责|参与|对接|协助|配合)/.test(String(a).trim()));
+    if (suspicious.length) {
+      console.warn(`⚠️  ${job.name}：成果中有 ${suspicious.length} 条疑似职责描述，请检查 prompt 输出`);
+    }
+    if (job.highlights.length && !job.achievements.length) {
+      console.warn(`ℹ️  ${job.name}：无成果条目（achievements 为空），简历将只展示职责`);
+    }
+  }
+  return changed;
+}
+
 export function enrichResume(json) {
   let changed = false;
 
@@ -93,6 +132,13 @@ export function enrichResume(json) {
       json.education.degree = json.education.studyType;
       changed = true;
     }
+  }
+
+  if (Array.isArray(json.work)) {
+    if (normalizeWork(json.work)) changed = true;
+  } else {
+    json.work = [];
+    changed = true;
   }
 
   return changed;

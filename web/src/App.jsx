@@ -1,33 +1,34 @@
-import { useEffect, useState } from "react";
-import resume from "./resume.json";
+import { useEffect, useMemo, useState } from "react";
+import resumeZh from "./resume.json";
+import resumeEn from "./resume.en.json";
+import { UI, detectLang, STORAGE_KEY } from "./i18n";
 import "./style.css";
-
-const basics = resume.basics ?? {};
-const work = resume.work ?? [];
-const skills = resume.skills ?? [];
-const certificates = resume.certificates ?? [];
-const languages = resume.languages ?? [];
-const education = Array.isArray(resume.education)
-  ? resume.education
-  : resume.education
-    ? [resume.education]
-    : [];
 
 const GITHUB = "https://github.com/forrestxm";
 
-const stats = [
-  { num: "25+", unit: "年", label: "软件工程经验" },
-  { num: "20+", unit: "年", label: "项目管理经验" },
-  { num: "10+", unit: "年", label: "团队管理经验" },
-  { num: "3", unit: "家", label: "IBM · Dell EMC · Xincere Med" },
+const MONTHS_EN = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ];
 
-const dateRange = (job) => {
-  const s = job.startDate ?? "";
-  const e = job.endDate ?? "";
-  if (s && e) return `${s} – ${e}`;
-  return s || e;
+// 把 "2026-05" 渲染成本地化的年月：中文 2026.5 / 英文 May 2026
+const formatMonth = (value, lang) => {
+  const m = /^(\d{4})-(\d{1,2})$/.exec(String(value ?? "").trim());
+  if (!m) return String(value ?? "");
+  const year = m[1];
+  const month = Number(m[2]);
+  if (lang === "en") return `${MONTHS_EN[month - 1] ?? ""} ${year}`.trim();
+  return `${year}.${month}`;
 };
+
+const dateRange = (job, lang) => {
+  const start = formatMonth(job.startDate, lang);
+  const end = job.endDate ? formatMonth(job.endDate, lang) : lang === "en" ? "Present" : "至今";
+  if (start && end) return `${start} – ${end}`;
+  return start || end;
+};
+
+const toArray = (value) => (Array.isArray(value) ? value : value ? [value] : []);
 
 function Reveal({ children, delay = 0, className = "" }) {
   return (
@@ -38,9 +39,41 @@ function Reveal({ children, delay = 0, className = "" }) {
 }
 
 export default function App() {
+  const [lang, setLang] = useState(detectLang);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showTop, setShowTop] = useState(false);
+
+  const t = UI[lang] ?? UI.zh;
+
+  const data = useMemo(() => {
+    const resume = lang === "en" ? resumeEn : resumeZh;
+    return {
+      basics: resume.basics ?? {},
+      work: resume.work ?? [],
+      skills: resume.skills ?? [],
+      certificates: resume.certificates ?? [],
+      languages: resume.languages ?? [],
+      education: toArray(resume.education)
+    };
+  }, [lang]);
+
+  const { basics, work, skills, certificates, languages, education } = data;
+
+  // 语言切换：同步 <html lang>、标题、URL（可分享 ?lang=en）、本地记忆
+  useEffect(() => {
+    document.documentElement.lang = t.htmlLang;
+    document.title = t.title;
+    try {
+      window.localStorage.setItem(STORAGE_KEY, lang);
+      const url = new URL(window.location.href);
+      if (lang === "zh") url.searchParams.delete("lang");
+      else url.searchParams.set("lang", lang);
+      window.history.replaceState({}, "", url);
+    } catch {
+      /* 隐私模式忽略 */
+    }
+  }, [lang, t]);
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -71,40 +104,45 @@ export default function App() {
   const copy = (text, e) => {
     const btn = e.currentTarget;
     navigator.clipboard?.writeText(text).then(() => {
-      btn.textContent = "已复制";
+      btn.textContent = t.contact.copied;
       btn.classList.add("done");
       setTimeout(() => {
-        btn.textContent = "复制";
+        btn.textContent = t.contact.copy;
         btn.classList.remove("done");
       }, 1600);
     });
   };
 
   const closeMenu = () => setMenuOpen(false);
+  const toggleLang = () => setLang((prev) => (prev === "zh" ? "en" : "zh"));
 
   return (
     <>
       <a className="skip-link" href="#main">
-        跳到主要内容
+        {t.skip}
       </a>
 
       <header className={`nav ${scrolled ? "scrolled" : ""}`}>
         <div className="nav-inner">
           <a className="brand" href="#top" onClick={closeMenu}>
-            夏铭<span className="brand-dot">.</span>
+            {basics.name}
+            <span className="brand-dot">.</span>
           </a>
           <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-            <a href="#about" onClick={closeMenu}>关于</a>
-            <a href="#experience" onClick={closeMenu}>经历</a>
-            <a href="#skills" onClick={closeMenu}>技能</a>
-            <a href="#certificates" onClick={closeMenu}>证书</a>
-            <a href="#education" onClick={closeMenu}>教育</a>
-            <a href="#contact" onClick={closeMenu}>联系</a>
-            <a className="nav-cta" href="#contact" onClick={closeMenu}>联系我</a>
+            <a href="#about" onClick={closeMenu}>{t.nav.about}</a>
+            <a href="#experience" onClick={closeMenu}>{t.nav.experience}</a>
+            <a href="#skills" onClick={closeMenu}>{t.nav.skills}</a>
+            <a href="#certificates" onClick={closeMenu}>{t.nav.certificates}</a>
+            <a href="#education" onClick={closeMenu}>{t.nav.education}</a>
+            <a href="#contact" onClick={closeMenu}>{t.nav.contact}</a>
+            <button className="lang-toggle" onClick={toggleLang} title={t.switchTitle} aria-label={t.switchTitle}>
+              {t.switchTo}
+            </button>
+            <a className="nav-cta" href="#contact" onClick={closeMenu}>{t.nav.cta}</a>
           </nav>
           <button
             className={`nav-toggle ${menuOpen ? "open" : ""}`}
-            aria-label="打开菜单"
+            aria-label={t.openMenu}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(!menuOpen)}
           >
@@ -120,15 +158,15 @@ export default function App() {
         <section className="hero" id="top">
           <div className="hero-bg" aria-hidden="true"></div>
           <div className="hero-inner">
-            <p className="hero-eyebrow reveal">{basics.label ?? "资深软件开发经理"}</p>
+            <p className="hero-eyebrow reveal">{basics.label ?? ""}</p>
             <h1 className="hero-name reveal" style={{ transitionDelay: "80ms" }}>{basics.name}</h1>
             <p className="hero-tagline reveal" style={{ transitionDelay: "160ms" }}>
-              以身作则，化繁为简，协作共赢。
+              {t.hero.tagline[0]}
               <br />
-              25 年横跨软件全球化、中间件、企业社交、存储自动化与临床研究软件的研发与管理经验。
+              {t.hero.tagline[1]}
             </p>
             <div className="hero-stats reveal" style={{ transitionDelay: "240ms" }}>
-              {stats.map((s, i) => (
+              {t.stats.map((s, i) => (
                 <div className="stat" key={i}>
                   <span className="stat-num">
                     {s.num}
@@ -139,8 +177,8 @@ export default function App() {
               ))}
             </div>
             <div className="hero-actions reveal" style={{ transitionDelay: "320ms" }}>
-              <a className="btn btn-primary" href="#experience">查看经历</a>
-              <a className="btn btn-ghost" href="#contact">联系我</a>
+              <a className="btn btn-primary" href="#experience">{t.hero.primary}</a>
+              <a className="btn btn-ghost" href="#contact">{t.hero.secondary}</a>
             </div>
           </div>
           <div className="hero-scroll" aria-hidden="true">
@@ -151,8 +189,8 @@ export default function App() {
         {/* ===== 关于 ===== */}
         <section className="section" id="about">
           <div className="section-head">
-            <p className="section-kicker reveal">关于我</p>
-            <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>About Me</h2>
+            <p className="section-kicker reveal">{t.about.kicker}</p>
+            <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>{t.about.title}</h2>
           </div>
           <div className="about-grid">
             <div className="about-text">
@@ -162,34 +200,19 @@ export default function App() {
                 </Reveal>
               )}
               <Reveal delay={80}>
-                <p>
-                  长期主导复杂软件产品从需求、设计、开发、测试到交付的全生命周期，
-                  擅长跨部门资源整合与教练式团队管理，多次代表研发部门应对客户稽查与审计。
-                </p>
+                <p>{t.about.extra}</p>
               </Reveal>
             </div>
             <div className="about-cards">
-              <Reveal delay={120}>
-                <div className="mini-card">
-                  <span className="mini-icon">🎯</span>
-                  <h3>以身作则</h3>
-                  <p>高度责任感和主动性，长期保持稳定高质量的产出</p>
-                </div>
-              </Reveal>
-              <Reveal delay={200}>
-                <div className="mini-card">
-                  <span className="mini-icon">🧩</span>
-                  <h3>化繁为简</h3>
-                  <p>丰富的复杂问题处理经验，善于把大问题拆解成可执行的路径</p>
-                </div>
-              </Reveal>
-              <Reveal delay={280}>
-                <div className="mini-card">
-                  <span className="mini-icon">🤝</span>
-                  <h3>协作共赢</h3>
-                  <p>教练式管理培养团队，推动跨团队协作共创</p>
-                </div>
-              </Reveal>
+              {t.about.cards.map((c, i) => (
+                <Reveal key={i} delay={120 + i * 80}>
+                  <div className="mini-card">
+                    <span className="mini-icon">{c.icon}</span>
+                    <h3>{c.h}</h3>
+                    <p>{c.p}</p>
+                  </div>
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>
@@ -197,8 +220,8 @@ export default function App() {
         {/* ===== 经历 ===== */}
         <section className="section section-alt" id="experience">
           <div className="section-head">
-            <p className="section-kicker reveal">职业经历</p>
-            <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>Experience</h2>
+            <p className="section-kicker reveal">{t.experience.kicker}</p>
+            <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>{t.experience.title}</h2>
           </div>
           <div className="timeline">
             {work.map((job, i) => (
@@ -208,20 +231,25 @@ export default function App() {
                   <div className="tl-head">
                     <h3>{job.position}</h3>
                     <span className="tl-org">{job.name}</span>
-                    <span className="tl-date">{dateRange(job)}</span>
+                    <span className="tl-date">{dateRange(job, lang)}</span>
                   </div>
                   <div className="tl-body">
                     {job.summary && <p>{job.summary}</p>}
                     {job.highlights?.length > 0 && (
-                      <ul>
-                        {job.highlights.map((h, j) => (
-                          <li key={j}>{h}</li>
-                        ))}
-                      </ul>
+                      <div className="tl-block">
+                        {job.achievements?.length > 0 && (
+                          <p className="tl-block-title">{t.experience.duties}</p>
+                        )}
+                        <ul>
+                          {job.highlights.map((h, j) => (
+                            <li key={j}>{h}</li>
+                          ))}
+                        </ul>
+                      </div>
                     )}
                     {job.achievements?.length > 0 && (
-                      <div className="tl-ach">
-                        <p className="tl-ach-title">主要成果</p>
+                      <div className="tl-block tl-ach">
+                        <p className="tl-block-title">{t.experience.achievements}</p>
                         <ul>
                           {job.achievements.map((a, j) => (
                             <li key={j}>{a}</li>
@@ -239,8 +267,8 @@ export default function App() {
         {/* ===== 技能 ===== */}
         <section className="section" id="skills">
           <div className="section-head">
-            <p className="section-kicker reveal">专业技能</p>
-            <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>Skills</h2>
+            <p className="section-kicker reveal">{t.skills.kicker}</p>
+            <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>{t.skills.title}</h2>
           </div>
           <div className="skills-grid">
             {skills.map((s, i) => (
@@ -267,8 +295,8 @@ export default function App() {
         {certificates.length > 0 && (
           <section className="section section-alt" id="certificates">
             <div className="section-head">
-              <p className="section-kicker reveal">认证与培训</p>
-              <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>Certificates & Trainings</h2>
+              <p className="section-kicker reveal">{t.certificates.kicker}</p>
+              <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>{t.certificates.title}</h2>
             </div>
             <Reveal>
               <div className="cert-panel">
@@ -288,8 +316,8 @@ export default function App() {
         {/* ===== 教育 ===== */}
         <section className="section" id="education">
           <div className="section-head">
-            <p className="section-kicker reveal">教育背景</p>
-            <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>Education</h2>
+            <p className="section-kicker reveal">{t.education.kicker}</p>
+            <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>{t.education.title}</h2>
           </div>
           <div className="edu-wrap">
             <Reveal>
@@ -301,7 +329,7 @@ export default function App() {
             </Reveal>
             <Reveal delay={100}>
               <div className="edu-card lang-card">
-                <h3>Languages</h3>
+                <h3>{t.education.languages}</h3>
                 <div className="lang-row">
                   {languages.map((l, i) => (
                     <span key={i}>
@@ -317,8 +345,8 @@ export default function App() {
         {/* ===== 联系 ===== */}
         <section className="section section-contact" id="contact">
           <div className="section-head">
-            <p className="section-kicker reveal">联系我</p>
-            <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>Contact</h2>
+            <p className="section-kicker reveal">{t.contact.kicker}</p>
+            <h2 className="section-title reveal" style={{ transitionDelay: "60ms" }}>{t.contact.title}</h2>
           </div>
           <div className="contact-grid">
             {basics.url && (
@@ -326,7 +354,7 @@ export default function App() {
                 <a className="contact-item" href={basics.url} target="_blank" rel="noreferrer">
                   <span className="contact-icon">🌐</span>
                   <div>
-                    <span className="contact-label">在线简历</span>
+                    <span className="contact-label">{t.contact.url}</span>
                     <span className="contact-value">{basics.url.replace(/^https?:\/\//, "")}</span>
                   </div>
                   <button
@@ -335,9 +363,9 @@ export default function App() {
                       e.preventDefault();
                       copy(basics.url, e);
                     }}
-                    title="复制"
+                    title={t.contact.copyTitle}
                   >
-                    复制
+                    {t.contact.copy}
                   </button>
                 </a>
               </Reveal>
@@ -347,7 +375,7 @@ export default function App() {
                 <a className="contact-item" href={`mailto:${basics.email}`}>
                   <span className="contact-icon">✉️</span>
                   <div>
-                    <span className="contact-label">邮箱</span>
+                    <span className="contact-label">{t.contact.email}</span>
                     <span className="contact-value">{basics.email}</span>
                   </div>
                   <button
@@ -357,9 +385,9 @@ export default function App() {
                       e.preventDefault();
                       copy(basics.email, e);
                     }}
-                    title="复制"
+                    title={t.contact.copyTitle}
                   >
-                    复制
+                    {t.contact.copy}
                   </button>
                 </a>
               </Reveal>
@@ -377,22 +405,22 @@ export default function App() {
                     e.preventDefault();
                     copy(GITHUB, e);
                   }}
-                  title="复制"
+                  title={t.contact.copyTitle}
                 >
-                  复制
+                  {t.contact.copy}
                 </button>
               </a>
             </Reveal>
           </div>
-          <p className="contact-note reveal">期待与您交流研发管理、AI 赋能研发与质量体系建设</p>
+          <p className="contact-note reveal">{t.contact.note}</p>
         </section>
       </main>
 
       <footer className="footer">
-        <p>© 2026 夏铭 · 资深软件开发经理</p>
+        <p>{t.footer}</p>
       </footer>
 
-      <a className={`back-top ${showTop ? "show" : ""}`} href="#top" aria-label="回到顶部">
+      <a className={`back-top ${showTop ? "show" : ""}`} href="#top" aria-label={t.backTop}>
         ↑
       </a>
     </>

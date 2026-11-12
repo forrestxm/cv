@@ -3,6 +3,7 @@ import path from "path";
 import OpenAI from "openai";
 import { RESUME_PROMPT } from "../agent/prompt.js";
 import { enrichResume } from "./enrich.js";
+import { translateResume } from "./translate.js";
 
 // 配置错误使用独立退出码，便于 CI 区分「配置问题」和「生成失败」
 const EXIT_CONFIG_ERROR = 78;
@@ -33,6 +34,8 @@ const root = process.cwd();
 const inputPath = path.join(root, "resumes/input.md");
 const outputPath = path.join(root, "resumes/output.json");
 const webPath = path.join(root, "web/src/resume.json");
+const outputEnPath = path.join(root, "resumes/output.en.json");
+const webEnPath = path.join(root, "web/src/resume.en.json");
 
 if (!fs.existsSync(inputPath)) {
   console.error(`❌ 找不到输入文件：${inputPath}`);
@@ -100,3 +103,20 @@ if (completion.usage) {
 }
 
 console.log("✅ Resume generated locally");
+
+// 英文版：翻译失败不影响中文版产出，也不覆盖仓库中已有的英文 JSON
+console.log("🌐 Translating to English...");
+try {
+  const { json: enJson, usage } = await translateResume(json);
+  for (const target of [outputEnPath, webEnPath]) {
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, JSON.stringify(enJson, null, 2));
+    console.log(`   已写入：${target}`);
+  }
+  if (usage) {
+    console.log(`   用量：prompt=${usage.prompt_tokens} completion=${usage.completion_tokens}`);
+  }
+  console.log("✅ English resume generated");
+} catch (err) {
+  console.warn(`⚠️  英文版生成失败，保留仓库中已有的英文 JSON：${err.message}`);
+}
